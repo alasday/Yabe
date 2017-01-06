@@ -7,10 +7,23 @@ client_secret="ECzSK7bvA-M9_6vDuQaS7QHQpnW3WRWHQxxsewNPQ326ZhCsCjmoygbYkalhmx_WX
 credentials = "%s:%s" % (client_id, client_secret)
 encode_credential = base64.b64encode(credentials)
 
-
 class Seller:
-	
+	email = ""
+	fname = ""
+	lname = ""
+	business_name = ""
+	phone = []
+	address = []
+	item_info = []
+	note = ""
 
+class Buyer:
+	billing_info = []
+	fname = ""
+	lname = ""
+	business_name = ""
+	phone = []
+	address = []
 
 def get_token():
 	headers = {
@@ -42,7 +55,7 @@ def create_invoice(seller_obj, buyer_obj, item_obj access_token):
   			"phone": seller_obj.phone,
   			"address": seller_obj.address
   		},
-  		"billing_info": seller_obj.billing_info
+  		"billing_info": buyer_obj.billing_info
   		"items": seller_obj.item_info,
   		"note": seller_obj.item_note,
   		"payment_term": {"term_type": "NET_45"},
