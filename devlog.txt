@@ -1,9 +1,15 @@
+chloeD -- 2017-01-05 14:05 
+	with jack: created utils/templates folders and some preliminary files that will most likey be used
+	
 asherL -- 2017-1-5 16:46
 	Created devlog, pushed repo to curly-tribble
 
+
+chloeD -- 2017-01-05 17:00 
+	contributed to DESIGN doc
+
 asherL -- 2017-1-5 22:27
        Edited design doc and added it to submod
-
 
 
 
