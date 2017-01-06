@@ -1,5 +1,10 @@
 asherL -- 2017-1-5 16:46
 	Created devlog, pushed repo to curly-tribble
 
+asherL -- 2017-1-5 22:27
+       Edited design doc and added it to submod
+
+
+
 
 
