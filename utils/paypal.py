@@ -16,6 +16,34 @@ class Seller:
 	address = []
 	item_info = []
 	note = ""
+	
+	#all of the following keys MUST be strings, even if they are numbers
+	#phone is a dictionary that contains two keys:
+		#"country_code" - should always be "001", this site is US only for now
+		#"national_number" - 10 digit phone number
+	#address is a dictionary that contains six keys:
+		#"line1" - address line 1 (street number)
+		#"line2" - address line 2 (apt/suite number) - empty string if none
+		#"city" - city
+		#"state" - state
+		#"postal_code" - zip code
+		#"country_code" - always "US"
+	#item_info is a list with only one dictionary inside that contains three keys:
+		#"name" - item name
+		#"quantity" - number of items (most of the time this will be "1")
+		#"unit_price" - dictionary that contains two keys:
+			#"currency" - always "USD"
+			#"value" - price in dollars
+	#email, fname, lname, business_name, and note (use get_note() for this) will be strings
+	def __init__(self, email, fname, lname, business_name, phone, address, item_info, note):
+		self.email = email
+		self.fname = fname
+		self.lname = lname
+		self.business_name = business_name
+		self.phone = phone
+		self.address = address
+		self.item_info = item_info
+		self.note = note
 
 class Buyer:
 	billing_info = []
