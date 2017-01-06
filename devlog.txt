@@ -11,6 +11,12 @@ chloeD -- 2017-01-05 17:00
 asherL -- 2017-1-5 22:27
        Edited design doc and added it to submod
 
-
-
-
+noahF -- 2017-01-05 13:20
+	Finished API info on design doc
+	Began testing API
+	
+noahF -- 2017-01-05 18:00
+	Finished role explanation on design doc
+	
+noahF -- 2017-01-06 10:30
+	Finished testing API, began working on invoice creation
