@@ -7,6 +7,10 @@ client_secret="ECzSK7bvA-M9_6vDuQaS7QHQpnW3WRWHQxxsewNPQ326ZhCsCjmoygbYkalhmx_WX
 credentials = "%s:%s" % (client_id, client_secret)
 encode_credential = base64.b64encode(credentials)
 
+def get_note(item_id):
+	#check DB for condition, size, price, etc
+	return ""
+
 class Seller:
 	email = ""
 	fname = ""
@@ -52,6 +56,17 @@ class Buyer:
 	business_name = ""
 	phone = []
 	address = []
+	
+	#phone and address follow the same guidelines as Seller class
+	#billing_info is a list with only one dictionary inside that contains one key:
+		#"email" - the buyer's email
+	def __init__(self, billing_info, fname, lname, business_name, phone, address):
+		self.billing_info = billing_info
+		self.fname = fname
+		self.lname = lname
+		self.business_name = business_name
+		self.phone = phone
+		self.address = address
 
 def get_token():
 	headers = {
@@ -68,7 +83,7 @@ def get_token():
 
 	return token["access_token"]
 	
-def create_invoice(seller_obj, buyer_obj, item_obj access_token):
+def create_invoice(seller_obj, buyer_obj, item_obj, access_token):
 	headers = {
     	'Content-Type': 'application/json',
     	'Authorization': 'Bearer %s' % access_token,
@@ -99,3 +114,33 @@ def create_invoice(seller_obj, buyer_obj, item_obj access_token):
 	result = requests.post('https://api.sandbox.paypal.com/v1/invoicing/invoices/', headers=headers, data=data)
 	print result
 	
+#EXAMPLE/TEST
+#Note that these will be automatically created in the database and simply need to be pulled
+#from the DB once it is implemented
+seller_email = "yabeapplication_facilitator@gmail.com"
+seller_fname = "Yabe"
+seller_lname = "App"
+seller_business_name = "YabeApplication"
+seller_phone = {
+	"country_code" = "001",
+	"national_number" = "1234567890"
+}
+seller_address = {
+	"line1" = "345 Chambers Street",
+	"line2" = "",
+	"city" = "New York",
+	"state" = "NY",
+	"postal_code" = "10282",
+	"country_code" = "US"
+}
+seller_item_info = {
+	"name" = "test_name",
+	"quantity" = "1",
+	"unit_price" = {
+		"currency" = "USD",
+		"value" = "10"
+	}
+}
+seller_note = get_note(0)
+seller_obj = Seller(seller_email, seller_fname, seller_lname, seller_business_name, seller_phone, seller_address, seller_item_info)
+
