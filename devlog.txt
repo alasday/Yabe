@@ -38,3 +38,8 @@ jackS -- 2017-01-08 20:38
 
 noahF -- 2017-01-08 20:00
 	Nearly finished testing library, need to do an actual payment test
+
+=============== Monday, January 9th ===============
+
+sebastianC -- 2017-01-09 13:39
+	   Added all the templates for basic login, feed, and upload
