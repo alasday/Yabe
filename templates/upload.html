@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Upload</title>
+{% endblock %}
+
+{% block navbar %}
+<li><a href = "/"> Back </a></li>
+<li><a href = "/logout"> Logout </a></li>
+{% endblock %}
+{% block body %}
+<center>
+<h3> Upload A New Image </h3>
+<p class="bg-info"> Accepted image format: png, jpg, jpeg, PNG, JPG, JPEG </p>
+</center>
+<br><br>
+<div class="row">
+    <div class="col-md-6">
+      <form method='POST' action="/upload/local" enctype="multipart/form-data">
+	<h4>Upload From My Machine</h4><br><br>
+	<div class="form-group">
+	  <div class="col-xs-6">
+	    Choose Image:<br> <input type="file" name="file" class="form-control" required><br><br>
+	    Image Name:<br> <input type=text" name="filename" class="form-control" placeholder="Punctuation will be removed"required><br><br>
+            <input type="submit" value="Upload">
+	  </div>
+	</div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <form method='POST' action="/upload/web">
+	<h4>Upload From Internet</h4><br><br>
+	<div class="form-group">
+	  <div class="col-xs-6">
+	    Image Link: <input type="text" name="link" placeholder="Enter image link" class="form-control" required><br><br>
+	    Image Name: <input type="text" name="filename" placeholder="Punctuation will be removed" class="form-control" required><br><br>
+	    <input type="submit" value="Upload">
+	  </div>
+	</div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
