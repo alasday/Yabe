@@ -1,14 +1,18 @@
+-------------DEVLOG---------------
+Team 2003 Honda Civic
+
+=============== Thursday, January 5th ===============
+
 chloeD -- 2017-01-05 14:05 
 	with jack: created utils/templates folders and some preliminary files that will most likey be used
 	
-asherL -- 2017-1-5 16:46
+asherL -- 2017-01-05 16:46
 	Created devlog, pushed repo to curly-tribble
-
 
 chloeD -- 2017-01-05 17:00 
 	contributed to DESIGN doc
 
-asherL -- 2017-1-5 22:27
+asherL -- 2017-01-05 22:27
        Edited design doc and added it to submod
 
 noahF -- 2017-01-05 13:20
@@ -18,5 +22,13 @@ noahF -- 2017-01-05 13:20
 noahF -- 2017-01-05 18:00
 	Finished role explanation on design doc
 	
+=============== Friday, January 6th ===============
+
 noahF -- 2017-01-06 10:30
 	Finished testing API, began working on invoice creation
+
+=============== Sunday, January 8th ===============
+
+jackS -- 2017-01-08 20:38
+- wrote file utils/initialize.py
+- wrote file utils/accountManager.py, with login and register methods
