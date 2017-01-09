@@ -26,9 +26,15 @@ noahF -- 2017-01-05 18:00
 
 noahF -- 2017-01-06 10:30
 	Finished testing API, began working on invoice creation
+	
+noahF -- 2017-01-07 14:00
+	API doesn't actually work, must use library, began testing library
 
 =============== Sunday, January 8th ===============
 
 jackS -- 2017-01-08 20:38
 - wrote file utils/initialize.py
 - wrote file utils/accountManager.py, with login and register methods
+
+noahF -- 2017-01-08 20:00
+	Nearly finished testing library, need to do an actual payment test
