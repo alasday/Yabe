@@ -1,5 +1,5 @@
 import paypalrestsdk
-import os
+from flask import request
 import urlparse
 #import utils
 
@@ -18,8 +18,8 @@ def create_payment_for_buyer(item_id):
 			"payment_method":"paypal"
 		},
 		"redirect_urls": {
-			"return_url":"http://www.sandbox.paypal.com/",
-			"cancel_url":"http://www.paypal.com/"
+			"return_url":"http://127.0.0.1:5000/buyexec",
+			"cancel_url":"http://127.0.0.1:5000/buytest"
 		},
 		"transactions": [{
 			"item_list": {
@@ -41,22 +41,28 @@ def create_payment_for_buyer(item_id):
 	payment = paypalrestsdk.Payment(payload)
 	
 	if payment.create():
-		print("Payment[%s] created successfully" % (payment.id))
+		print "Payment[%s] created successfully" % (payment.id)
 		for link in payment.links:
 			if link.method == "REDIRECT":
 				redirect_url = str(link.href)
-				print("Redirect for approval: %s" % (redirect_url))
-		url = os.environ["REQUEST_URI"] 
-		parsed = urlparse.urlparse(url)
-		payer_id = parsed["PayerID"]
-		if payment.execute({"payer_id": payer_id}):
-  			print("Payment execute successfully")
-		else:
-  			print(payment.error)
+				return "Redirect for approval: %s" % (redirect_url)
 	else:
-		print("Error while creating payment:")
-		print(payment.error)
+		return "Error while creating payment:"+payment.error
 
+def execute_payment_for_buyer():
+	parsed = urlparse.urlparse(request.path)
+	print "parsed: ",parsed
+	query = parsed[4]
+	print "query: ",query
+	query_parsed = urlparse.parse_qs(query)
+	print "query_parsed: ",query_parsed
+	payment_id = query_parsed["paymentId"]
+	payer_id = query_parsed["PayerID"]
+	payment = paypalrestsdk.Payment.find(payment_id)
+	if payment.execute({"payer_id": payer_id}):
+		return "Payment execute successfully"
+	else:
+		return payment.error 
 	
 #EXAMPLE/TEST
-create_payment_for_buyer(0)
+#create_payment_for_buyer(0)
