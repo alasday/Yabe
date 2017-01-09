@@ -16,3 +16,9 @@ def getUserInfo( userId ):
     return ret
     
     
+def get_item(item_id):
+	ret = {}
+	#need:
+		#"name"
+		#"price"
+		#"desc"
