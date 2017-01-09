@@ -16,9 +16,9 @@ f.close
 @app.route("/")
 def loginOrRegister():
     if 'username' in session:
-        return redirect("/profile")
+        return render_template("index.html", images=images, tagStrings=tagStrings, username=session['username'])
     else:
-        return render_template("loginOrReg.html", username=True)
+        return render_template("index.html", images=images, tagStrings=tagStrings)
 
 #handles input of the login register page
 @app.route("/authOrCreate", methods=["POST"])
