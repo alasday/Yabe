@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block navhead %}
+<script src="/static/js/lazyload.js"></script>
+{% endblock %}
+
+{% block navbar %}
+<li><a class="nav-item nav-link" href = "/"> Back </a><li>
+<li><a class="nav-item nav-link" href = "/upload"> Upload </a></li>
+<li><a class="nav-item nav-link" href = "/logout"> Logout </a></li>
+{% endblock %}
+
+{% block body %}
+<center>
+<h1> Profile </h1>
+<br>
+<h5> Hello, {{username}}! </h5>
+</center>
+
+<div class="container">
+    {% set i = 0 %}
+    {% for image in images %}
+  <h4>{{ image[1] }}</h4>
+	<a href="{{ url_for('static', filename = 'images' + image[0])}}" data-lightbox="image" data-title="{{tagStrings[i]}}">
+	{% set i = i + 1 %}
+	  <img class="index" src="{{ url_for('static', filename = 'images' + image[0]) }}" height="300"></img></a>
+	<br>
+	 posted by {{ image[2] }} <br><br><br><br>
+    {% endfor %}
+  
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+     $("img.lazy").lazyload({
+         effect : "fadeIn"
+     });
+
+  });
+  </script>
+{% endblock %}
