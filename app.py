@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import hashlib
 import os
 import utils
-from  utils import accountManager, dbManager, api, info
+from  utils import dbmanager 
 import urllib2, json
 
 app = Flask(__name__)
