@@ -1,12 +1,11 @@
-import requests
-import base64
-import json
+import paypalrestsdk
+import utils
 
-client_id="AQSIxUH2ndmMMKY6dUDu8BSbWZ9v77R7PGbW2zDxzluD3DL5mI6YBA2LZVrBtqgGE331-ZLx1PJPqKXc"
-client_secret="ECzSK7bvA-M9_6vDuQaS7QHQpnW3WRWHQxxsewNPQ326ZhCsCjmoygbYkalhmx_WX9mcpnON_GSnFlpI"
-
-credentials = "%s:%s" % (client_id, client_secret)
-encode_credential = base64.b64encode(credentials)
+paypalrestsdk.configure({
+	"mode": "sandbox",
+	"client_id": "AQSIxUH2ndmMMKY6dUDu8BSbWZ9v77R7PGbW2zDxzluD3DL5mI6YBA2LZVrBtqgGE331-ZLx1PJPqKXc",
+	"client_secret": "ECzSK7bvA-M9_6vDuQaS7QHQpnW3WRWHQxxsewNPQ326ZhCsCjmoygbYkalhmx_WX9mcpnON_GSnFlpI"
+})
 
 def get_note(item_id):
 	#check DB for condition, size, price, etc
@@ -68,48 +67,36 @@ class Buyer:
 		self.business_name = business_name
 		self.phone = phone
 		self.address = address
-
-def get_token():
-	headers = {
-		"Authorization": ("Basic %s" % encode_credential),
-		'Accept': 'application/json',
-		'Accept-Language': 'en_US',
-	}
-
-	param = {
-		'grant_type': 'client_credentials',
-	}
-
-	token = requests.post("https://api.sandbox.paypal.com/v1/oauth2/token", headers=headers, data=param)
-	return json.loads(token.text)["access_token"]
 	
-def create_invoice(seller_obj, buyer_obj, access_token):
-	headers = {
-    	'Content-Type': 'application/json',
-    	'Authorization': 'Bearer %s' % access_token,
-	}
-
+def create_payment_for_buyer(item_id):
+	item = utils.dbmanager.get_item(item_id)
 	payload = {
-		"merchant_info": {
-			"email": seller_obj.email,
-			"first_name": seller_obj.fname,
-			"last_name": seller_obj.lname,
-  			"business_name": seller_obj.business_name,
-  			"phone": seller_obj.phone,
-  			"address": seller_obj.address
-  		},
-  		"billing_info": buyer_obj.billing_info,
-  		"items": seller_obj.item_info,
-  		"note": seller_obj.note,
-  		"payment_term": {"term_type": "NET_45"},
-  		"shipping_info": {
-  			"first_name": buyer_obj.fname,
-  			"last_name": buyer_obj.lname,
-  			"business_name": buyer_obj.business_name,
-  			"phone": buyer_obj.phone,
-			"address": buyer_obj.address
+		"intent":"sale",
+		"payer": {
+			"payment_method":"paypal"
+		},
+		"redirect_urls": {
+			"return_url":"http://www.paypal.com/",
+			"cancel_url":"http://www.paypal.com/"
 		}
+		"transactions": [{
+			"item_list": {
+				"items": [{
+					"name": item["name"],
+					"price": item["price"],
+					"currency": "USD",
+					"quantity": 1
+				}]
+			},
+			"amount": {
+				"total": item["price"],
+				"currency": "USD"
+			},
+			"description": item["desc"]
+		}]
 	}
+	
+	payment = paypalrestsdk.Payment(
 	
 	result = requests.post('https://api.sandbox.paypal.com/v1/invoicing/invoices/', headers=headers, data=payload)
 	print result.json()
@@ -163,4 +150,4 @@ buyer_address = {
 
 buyer_obj = Buyer(buyer_billing_info, buyer_fname, buyer_lname, buyer_business_name, buyer_phone, buyer_address)
 
-create_invoice(seller_obj, buyer_obj, get_token())
+create_payment_for_buyer(buyer_obj)
