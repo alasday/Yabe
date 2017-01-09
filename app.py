@@ -2,13 +2,14 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import hashlib
 import os
 import utils
+from utils import paypal
 from  utils import dbmanager 
 import urllib2, json
 
 app = Flask(__name__)
-f = open( "utils/key", 'r' )
-app.secret_key = f.read();
-f.close
+#f = open( "utils/key", 'r' )
+app.secret_key = "hello"#f.read();
+#f.close()
 
 #root, two behaviors:
 #    if logged in: redirects you to your feed
@@ -67,6 +68,14 @@ def logout():
     else:
         return redirect(url_for('loginOrRegister'))
 
+#test route for buying (noah)
+@app.route('/buytest', methods=["POST", "GET"])
+def buytest():
+	return paypal.create_payment_for_buyer(0)
+	
+@app.route('/buyexec', methods=["POST", "GET"])
+def buyexec():
+	return paypal.execute_payment_for_buyer()
     
 if __name__ == "__main__":
     app.debug = True
