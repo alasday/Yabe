@@ -71,11 +71,13 @@ def logout():
 #test route for buying (noah)
 @app.route('/buytest', methods=["POST", "GET"])
 def buytest():
-	return paypal.create_payment_for_buyer(0)
+	print paypal.create_payment_for_buyer(0)
+        return "check console"
 	
 @app.route('/buyexec', methods=["POST", "GET"])
 def buyexec():
-	return paypal.execute_payment_for_buyer()
+	print paypal.execute_payment_for_buyer()
+        return "check paypal"
     
 if __name__ == "__main__":
     app.debug = True

@@ -44,3 +44,9 @@ noahF -- 2017-01-08 20:00
 sebastianC -- 2017-01-09 13:39
 	   Added all the templates for basic login, feed, and upload
 	   Changed route and template stuff in app.py
+
+noahF -- 2017-01-09 13:40
+      Almost finished testing library, getting an error from request.path
+
+noahF -- 2017-01-09 20:30
+      PayPal library test complete, payment went through. No bugs!
