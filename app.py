@@ -29,6 +29,12 @@ def register():
 def login():
 	return render_template("login.html")
 
+@app.route("/pay")
+def pay():
+	#item = dbmanager.get_item(item_id)
+	item = {"name":"test", "price":"5.00", "desc":"test_item"}
+	return render_template("pay.html",item = item)
+
 #handles input of the login register page
 @app.route("/authOrCreate", methods=["POST"])
 def authOrCreate():
