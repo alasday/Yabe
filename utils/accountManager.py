@@ -72,7 +72,7 @@ def register(user,password,pwd):    #user-username, password-password, pwd-retyp
             userId = 0
 
         passHash = sha1(password).hexdigest()#hash it
-        insertUser = 'INSERT INTO users VALUES ("%s","%s","%s", 100000," ",0," ");' % (user,passHash,userId) #sqlite code for inserting new user
+        insertUser = 'INSERT INTO users VALUES ("%s","%s","%s","","","","","","","","","",);' % (user,passHash,userId) #sqlite code for inserting new user
 
         c.execute(insertUser)
 
