@@ -17,9 +17,9 @@ app.secret_key = "hello"#f.read();
 @app.route("/")
 def loginOrRegister():
     if 'username' in session:
-        return render_template("index.html", images=images, tagStrings=tagStrings, username=session['username'])
+        return render_template("index.html", username=session['username'])
     else:
-        return render_template("index.html", images=images, tagStrings=tagStrings)
+        return render_template("index.html")
 
 #handles input of the login register page
 @app.route("/authOrCreate", methods=["POST"])
