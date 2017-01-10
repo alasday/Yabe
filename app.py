@@ -33,7 +33,8 @@ def login():
 def pay():
 	#item = dbmanager.get_item(item_id)
 	item = {"name":"test", "price":"5.00", "desc":"test_item"}
-	return render_template("pay.html",item = item)
+	link = paypal.create_payment_for_buyer(0)
+	return render_template("pay.html",link = link)
 
 #handles input of the login register page
 @app.route("/authOrCreate", methods=["POST"])
