@@ -33,7 +33,7 @@ def authOrCreate():
         statusNum = accountManager.authenticate(username,password) #returns 0,1 or 2 for login status messate
         if statusNum == 0:
             loginStatus = "user does not exist"
-        elifb statusNum == 1:
+        elif statusNum == 1:
             session["username"]=username
             loginStatus = username + " logged in"
             return redirect( "/profile" )
