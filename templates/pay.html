@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script src="/static/js/lazyload.js"></script>
+<title>Caindid Images</title>
+{% endblock %}
+
+{% block navbar %}
+{% if username %}
+<li><a class="nav-item nav-link" href = "/profile"> Profile </a></li>
+<li><a class="nav-item nav-link" href = "/upload"> Upload </a></li>
+<li><a class="nav-item nav-link" href = "/logout"> Logout </a></li>
+
+
+{% else %}
+<li><a class="nav-item nav-link" href="{{link}}">Pay</a></li>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+     $("img.lazy").lazyload({
+         effect : "fadeIn"
+     });
+
+  });
+  </script>
+{% endblock %}
+ 
