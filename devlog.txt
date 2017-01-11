@@ -51,7 +51,13 @@ noahF -- 2017-01-09 13:40
 noahF -- 2017-01-09 20:30
       PayPal library test complete, payment went through. No bugs!
 
+============== Tuesday, January 10th ===============
+
 noahF -- 2017-01-10 13:20
 	Discovered a possible PayPal bug (where it doesn't recognize that you have balance in your account)
 	Bug can only be fixed by logging into a different account
 	Added a placeholder /pay route
+
+jackS -- 2017-01-10 13:40
+- coordinated with sebastion to get login/register working
+  - still not sure if it is working :(
