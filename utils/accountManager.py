@@ -22,6 +22,7 @@ def authenticate(user,password):
     checkUser = 'SELECT * FROM users WHERE username=="%s";' % (user)  #checks if the user is in the database
     c.execute(checkUser)
     l = c.fetchone() #listifies the results
+    print l
     if l == None:
         isLogin = False
         messageNumber = 0
@@ -72,7 +73,7 @@ def register(user,password,pwd):    #user-username, password-password, pwd-retyp
             userId = 0
 
         passHash = sha1(password).hexdigest()#hash it
-        insertUser = 'INSERT INTO users VALUES ("%s","%s","%s","","","","","","","","","",);' % (user,passHash,userId) #sqlite code for inserting new user
+        insertUser = 'INSERT INTO users VALUES ("%s","%s","%s");' % (user,passHash,userId) #sqlite code for inserting new user
 
         c.execute(insertUser)
 
