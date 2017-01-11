@@ -12,9 +12,9 @@ f = open( "utils/key", 'r' )
 app.secret_key = "hello"#f.read();
 f.close()
 
-#root, two behaviors:
-#    if logged in: redirects you to your feed
-#    if not logged in: displays log in/register page
+
+#NEEDS TO BE CHANGED --> users not logged in can still see feed, but if they try to bid/make
+#a buy request, they will be redirected to log in
 @app.route("/")
 def loginOrRegister():
     if 'username' in session:
@@ -80,6 +80,22 @@ def authOrCreate():
         return render_template("loginOrReg.html",status=registerStatus) #status is the login/creation messate 
     else:
         return redirect(url_for("loginOrReg"))
+
+#form for item info
+@app.route("/buy")
+def buy():
+	if 'username' in session:
+		return render_template("buy.html")
+	else:
+		return redirect(url_for('loginOrRegister'))
+
+#form for profile, show specific profile info
+@app.route("/profile")
+def profile():
+	if 'username' in session:
+		return render_template("profile.html",user_info = accountsManager.get_user(session['username'])
+	else:
+		return redirect(url_for('loginOrRegister'))
 
 #logout of user
 @app.route('/logout', methods=["POST", "GET"])
