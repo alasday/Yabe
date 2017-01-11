@@ -58,6 +58,10 @@ noahF -- 2017-01-10 13:20
 	Bug can only be fixed by logging into a different account
 	Added a placeholder /pay route
 
+chloeD -- 2017-01-10-14:00
+	discussed Noah's API work and how we could work together to make sure things would be routed properly and so we could
+	be on the same page and understand the work
+
 jackS -- 2017-01-10 13:40
 - coordinated with sebastion to get login/register working
   - still not sure if it is working :(
