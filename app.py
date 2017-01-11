@@ -27,6 +27,10 @@ def register():
 def login():
 	return render_template("login.html")
 
+@app.route("/profile")
+def profile():
+        return render_template("profile.html", username=session["username"])
+
 @app.route("/pay")
 def pay():
 	#item = dbmanager.get_item(item_id)
@@ -79,6 +83,8 @@ def authOrCreate():
     else:
         return redirect(url_for("loginOrReg"))
 
+<<<<<<< HEAD
+=======
 #form for item info
 @app.route("/buy")
 def buy():
@@ -95,6 +101,7 @@ def profile():
 	else:
 		return redirect(url_for('loginOrRegister'))
 
+>>>>>>> b1ac6925ffc3dd89e094a9c4ff8c1f67e2cd298d
 #logout of user
 @app.route('/logout', methods=["POST", "GET"])
 def logout():
