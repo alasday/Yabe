@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for, Jinja2
+from flask import Flask, render_template, request, session, redirect, url_for
 import hashlib
 import os
 import utils
@@ -66,7 +66,7 @@ def authOrCreate():
     elif formDict["logOrReg"] == "register":  #registering
         username = formDict["username"]
         password = formDict["password"]
-        pwd = formDict["pwd"]  #confirm password
+        pwd = formDict["passconfirm"]  #confirm password
         registerStatus = "register failed"
         statusNum = accountManager.register(username,password,pwd) #returns true or false
         if statusNum == 0:
