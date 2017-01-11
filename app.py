@@ -8,9 +8,9 @@ from utils import accountManager
 import urllib2, json
 
 app = Flask(__name__)
-#f = open( "utils/key", 'r' )
+f = open( "utils/key", 'r' )
 app.secret_key = "hello"#f.read();
-#f.close()
+f.close()
 
 #root, two behaviors:
 #    if logged in: redirects you to your feed
@@ -38,12 +38,12 @@ def pay():
 	return render_template("pay.html",link = link)
 
 #handles the feed
-#@app.route("/feed)
-#def feed():
-	#how dowe wantto organize this (most popular? most recent at top?) 
-	#return render_template("feed.html,link=link)
+@app.route("/feed)
+def feed():
+	return render_template("feed.html")
 
 #handles input of the login register page
+
 @app.route("/authOrCreate", methods=["POST"])
 def authOrCreate():
     formDict = request.form
