@@ -38,10 +38,9 @@ def pay():
 	return render_template("pay.html",link = link)
 
 #handles the feed
-#@app.route("/feed)
-#def feed():
-	#how dowe wantto organize this (most popular? most recent at top?) 
-	#return render_template("feed.html,link=link)
+@app.route("/feed)
+def feed():
+	return render_template("feed.html")
 
 #handles input of the login register page
 
