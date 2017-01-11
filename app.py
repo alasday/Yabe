@@ -30,6 +30,10 @@ def register():
 def login():
 	return render_template("login.html")
 
+@app.route("/profile")
+def profile():
+        return render_template("profile.html", username=session["username"])
+
 @app.route("/pay")
 def pay():
 	#item = dbmanager.get_item(item_id)
