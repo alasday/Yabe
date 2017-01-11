@@ -40,6 +40,7 @@ noahF -- 2017-01-08 20:00
 	Nearly finished testing library, need to do an actual payment test
 
 =============== Monday, January 9th ===============
+<<<<<<< HEAD
 
 sebastianC -- 2017-01-09 13:39
 	   Added all the templates for basic login, feed, and upload
@@ -71,3 +72,48 @@ asherL -- 2017-01-10 14:02
 
 sebastianC -- 2017-01-10 14:03
        connected app.py and worked on login functonality with Jack
+=======
+
+sebastianC -- 2017-01-09 13:39
+	   Added all the templates for basic login, feed, and upload
+	   Changed route and template stuff in app.py
+
+noahF -- 2017-01-09 13:40
+      Almost finished testing library, getting an error from request.path
+
+noahF -- 2017-01-09 20:30
+      PayPal library test complete, payment went through. No bugs!
+
+============== Tuesday, January 10th ===============
+
+noahF -- 2017-01-10 13:20
+	Discovered a possible PayPal bug (where it doesn't recognize that you have balance in your account)
+	Bug can only be fixed by logging into a different account
+	Added a placeholder /pay route
+
+jackS -- 2017-01-10 13:40
+- coordinated with sebastion to get login/register working
+  - still not sure if it is working :(
+
+chloeD -- 2017-01-10-14:00
+	discussed Noah's API work and how we could work together to make sure things would be routed properly and so we could
+	be on the same page and understand the work
+
+asherL -- 2017-01-10 14:02
+       added timeline, created deadlines related to the feed with specific goals
+
+sebastianC -- 2017-01-10 14:03
+       connected app.py and worked on login functonality with Jack
+
+============== Wednesday, January 11th ===============
+
+noahF -- 2017-01-11 11:00
+	Fixed a lot of little bugs, got register & login working
+
+noahF -- 2017-01-11 13:20
+	Fixed github committing issue
+	Reverted some small changes because I didn't know about initialize.py
+	
+noahF -- 2017-01-11 15:00
+	Began new pages like /buy, /profile, fixing root (/)
+>>>>>>> b1ac6925ffc3dd89e094a9c4ff8c1f67e2cd298d
