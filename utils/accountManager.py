@@ -72,9 +72,8 @@ def register(user,password,pwd):    #user-username, password-password, pwd-retyp
         else: #first user to register
             userId = 0
 
-    passHash = sha1(password).hexdigest()#hash it
-        insertUser = 'INSERT INTO users VALUES ("%s","%s","%s", "", "", "", "", "", "", "", "", "");' % (user,passHash,userId) #sqlite code for inserting new user
-
+    	passHash = sha1(password).hexdigest()#hash it
+        insertUser = 'INSERT INTO users VALUES ("%s","%s","%s","","","","","","","","","");' % (user,passHash,userId) #sqlite code for inserting new user
         c.execute(insertUser)
 
         isRegister = True
