@@ -71,3 +71,15 @@ asherL -- 2017-01-10 14:02
 
 sebastianC -- 2017-01-10 14:03
        connected app.py and worked on login functonality with Jack
+
+============== Wednesday, January 11th ===============
+
+noahF -- 2017-01-11 11:00
+	Fixed a lot of little bugs, got register & login working
+
+noahF -- 2017-01-11 13:20
+	Fixed github committing issue
+	Reverted some small changes because I didn't know about initialize.py
+	
+noahF -- 2017-01-11 15:00
+	Began new pages like /buy, /profile, fixing root (/)
