@@ -36,6 +36,12 @@ def pay():
 	link = paypal.create_payment_for_buyer(0)
 	return render_template("pay.html",link = link)
 
+#handles the feed
+#@app.route("/feed)
+#def feed():
+	#how dowe wantto organize this (most popular? most recent at top?) 
+	#return render_template("feed.html,link=link)
+
 #handles input of the login register page
 @app.route("/authOrCreate", methods=["POST"])
 def authOrCreate():
