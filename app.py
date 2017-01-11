@@ -38,7 +38,7 @@ def pay():
 	return render_template("pay.html",link = link)
 
 #handles the feed
-@app.route("/feed)
+@app.route("/feed")
 def feed():
 	return render_template("feed.html")
 
