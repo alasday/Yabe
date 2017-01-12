@@ -11,6 +11,8 @@ def getUserInfo( userId ):
     c.execute(checkUser)
     l = c.fetchone()
 
+    db.commit()
+    db.close()
     print
 
     return ret
@@ -22,3 +24,30 @@ def get_item(item_id):
 		#"name"
 		#"price"
 		#"desc"
+
+def new_post( owner, title, startingPrice, period ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    q = "SELECT postId FROM posts"
+    c.execute(q)
+
+    IDS = c.fetchall()
+
+    if IDS: # if list is not empty, there exists ids to take the max of
+        postId = max(IDS)
+    else:    
+        postId = 0
+
+    date = 5
+    expires = date + period
+    
+    q = """
+    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%d', '%d')
+    """ % ( owner, postId, title, startingPrice, date, expires )
+
+    c.execute( q )
+
+    db.commit()
+    db.close()
