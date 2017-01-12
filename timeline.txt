@@ -1,0 +1,13 @@
+All deadlines are for the end of that night
+
+12/11/17
+-Template for a post has been finished
+-flask app has routes for a post
+-Database accessor functions needed for a post have been finalized
+-bidding functions have been started
+
+12/12/17
+posts have been finalized, with working bidding, timers, and details
+
+
+ 
