@@ -46,7 +46,7 @@ def new_post( owner, title, startingPrice, period ):
     expires = date + secondsPerDay * period
     
     q = """
-    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f')
+    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f');
     """ % ( owner, postId, title, startingPrice, date, expires )
 
     c.execute( q )
@@ -54,4 +54,31 @@ def new_post( owner, title, startingPrice, period ):
     db.commit()
     db.close()
 
-new_post( "jack", "we are lit", 1200, 10 ) 
+#new_post("jim", "im lit ", 12, 12)
+
+# returns a dict in the form:
+# dict = {
+#  "title" : title,
+#  "startingPrice" : startingPrice
+# }
+# I can add more stuff if anyone needs it
+def get_post( postId ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    q = "SELECT * FROM posts WHERE postId  = '%s';" % ( postId )
+    c.execute( q )
+
+    lit = c.fetchall()
+
+    dict = {}
+    dict["title"] = lit[0][2]
+    dict["startingPrice"] = lit[0][3]
+
+    db.commit()
+    db.close()
+
+    return dict
+
+#print get_post( 0 )
