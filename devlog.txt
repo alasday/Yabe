@@ -116,4 +116,8 @@ noahF -- 2017-01-11 13:20
 	
 noahF -- 2017-01-11 15:00
 	Began new pages like /buy, /profile, fixing root (/)
->>>>>>> b1ac6925ffc3dd89e094a9c4ff8c1f67e2cd298d
+
+jackS -- 2017-01-11 23:55
+- wrote function set_user_info to set user info after login
+- wrote function new_post to add a new post to the db\
+- wrote function get_post to return a dictionary containing information about a post
