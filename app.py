@@ -101,7 +101,8 @@ def profile():
 def logout():
     if "username" in session:
         session.pop('username')
-        return render_template("loginOrReg.html",status="logged out") 
+        render_template("loginOrReg.html",status="logged out")
+        return redirect("/login")
     else:
         return redirect(url_for('loginOrRegister'))
 
