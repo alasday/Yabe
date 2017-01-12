@@ -35,6 +35,7 @@ def pay():
 	return render_template("pay.html",link = link)
 
 #handles the feed
+#NOTE: the homepage will be the feed! You can see what other people have requested/offered but cannot request to offer anything yourself UNTIL you log in
 @app.route("/feed") 
 def feed():
 	return render_template("feed.html")
@@ -74,7 +75,7 @@ def authOrCreate():
             registerStatus = "passwords do not match"
         elif statusNum == 2:
             registerStatus = username +" account created"
-
+	    return redirect("/login") #WE NEED TOPUT AT THE TOP OF THE LOGIN PAGE: 'Username successfully registered, please log in'
         return render_template("loginOrReg.html",status=registerStatus) #status is the login/creation messate 
     else:
         return redirect(url_for("loginOrReg"))
