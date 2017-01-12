@@ -85,7 +85,24 @@ def register(user,password,pwd):    #user-username, password-password, pwd-retyp
     return messageNumber
 
 def get_item(item_id):
-	return {}
+    return {}
 
 def get_user(user_id):
-	return {}
+    return {}
+
+#set_user_info
+def set_user_info( username, email, addr1, addr2, addrCity, addrState, addrZip, nameF, nameL, phone):
+    f = "database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+
+    q = """
+    UPDATE users SET email = '%s', addr1 = '%s', addr2 = '%s', addrCity = '%s', addrState = '%s', addrZip = '%s', nameF = '%s', nameL = '%s', phone = '%s' 
+    WHERE username = '%s';""" % (email, addr1, addr2, addrCity, addrState, addrZip, nameF, nameL, phone, username)
+
+    c.execute(q)
+
+    db.commit()
+    db.close()
+
+set_user_info("jack", "testemail.com", "230 b 142", "11844", "nyc", "NY", "11694", "Jack", "Schluger", "917 391 7995")
