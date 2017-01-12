@@ -1,4 +1,4 @@
-import sqlite3   #enable control of an sqlite database
+import sqlite3, time
 
 def getUserInfo( userId ):
     ret = {}
@@ -36,18 +36,22 @@ def new_post( owner, title, startingPrice, period ):
     IDS = c.fetchall()
 
     if IDS: # if list is not empty, there exists ids to take the max of
-        postId = max(IDS)
+        postId = max(IDS)[0] + 1
     else:    
         postId = 0
 
-    date = 5
-    expires = date + period
+    date = time.time()
+
+    secondsPerDay = 86400
+    expires = date + secondsPerDay * period
     
     q = """
-    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%d', '%d')
+    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f')
     """ % ( owner, postId, title, startingPrice, date, expires )
 
     c.execute( q )
 
     db.commit()
     db.close()
+
+new_post( "jack", "we are lit", 1200, 10 ) 
