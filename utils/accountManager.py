@@ -87,12 +87,6 @@ def register(user,password,pwd):    #user-username, password-password, pwd-retyp
 #testing register
 #register("jack", "jack", "jack")
 
-def get_item(item_id):
-    return {}
-
-def get_user(user_id):
-    return {}
-
 #set_user_info
 def set_user_info( username, email, addr1, addr2, addrCity, addrState, addrZip, nameF, nameL, phone):
     f = "database.db"
