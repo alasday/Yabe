@@ -40,7 +40,6 @@ noahF -- 2017-01-08 20:00
 	Nearly finished testing library, need to do an actual payment test
 
 =============== Monday, January 9th ===============
-<<<<<<< HEAD
 
 sebastianC -- 2017-01-09 13:39
 	   Added all the templates for basic login, feed, and upload
@@ -128,3 +127,8 @@ chloeD -- 2017-01-11 23:45
 
 jackS --2017-01-12 22:28
 - wrote function new_bid in utils/dbmanager.py to add a new bid to a given post and log it in the bids table in the db
+
+============== Friday, January 12th ===============
+
+noahF -- 2017-01-13 13:20
+	-Working on profile page
