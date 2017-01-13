@@ -24,7 +24,7 @@ def get_user( username ):
     return ret
 
 #testing get_user
-print get_user("jack")
+#print get_user("jack")
 
 # new_post() -- method for creating a new post
 def new_post( owner, title, startingPrice, period ):
