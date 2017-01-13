@@ -97,20 +97,11 @@ def authOrCreate():
 #        return render_template("buy.html", stories=stories)
 
 #form for item info
-#@app.route("/buy")
-#def buy():
-#	if 'username' in session:
-#Do we not need a form on buy.html where you input the title, startingPrice, and period? Because then we need to call new_post and put all those in:
-#               new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
-#		return render_template("buy.html")
-#	else:
-#		return redirect(url_for('loginOrRegister'))
-#
-
-#form for item info
 @app.route("/buy")
 def buy():
 	if 'username' in session:
+        #Do we not need a form on buy.html where you input the title, startingPrice, and period? Because then we need to call new_post and put all those in:
+#               new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
 		return render_template("buy.html")
 	else:
 		return redirect(url_for('loginOrRegister'))
