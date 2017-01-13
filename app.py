@@ -80,38 +80,28 @@ def authOrCreate():
     else:
         return redirect(url_for("loginOrReg"))
 
-#I used this for my stories project and think it is very similar to how 
 #@app.route("/create", methods=["GET", "POST"])
 #def create():
-#    # Create new story
+#    # Create new post
 #    pass
 #
 #@app.route("/contribute", methods=["GET", "POST"])
 #def contribute():
 #    if request.method == "POST":
 #        # Add contribution to the database
-#        story_id = request.form["story_id"]
-#        return render_template("contribute.html")
+#        post_id = request.form["post_id"]
+#        return render_template("buy.html")
 #    else:
-#        # View all stories
-#        stories = []
-#        return render_template("contribute.html", stories=stories)
-#What if we tried something like this?? I definitely have more questions thanI have answers...
-##form for item info
-#@app.route("/buy")
-#def buy():
-#	if 'username' in session:
-#Do we not need a form on buy.html where you input the title, startingPrice, and period? Because then we need to call new_post and put all those in:
-#               new_post(owner, request.form["title"], request.form["startingPrice"],request.form["period"])
-#		return render_template("buy.html")
-#	else:
-#		return redirect(url_for('loginOrRegister'))
-#
+#        # View all posts
+#        posts = []
+#        return render_template("buy.html", stories=stories)
 
 #form for item info
 @app.route("/buy")
 def buy():
 	if 'username' in session:
+        #Do we not need a form on buy.html where you input the title, startingPrice, and period? Because then we need to call new_post and put all those in:
+#               new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
 		return render_template("buy.html")
 	else:
 		return redirect(url_for('loginOrRegister'))
