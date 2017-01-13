@@ -147,3 +147,20 @@ def new_bid( bidder, postId, price ):
 
 #testing new_bid
 #new_bid( "jack", 4, 11 ) 
+
+def full_user_info( username ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    checkUser = 'SELECT *  FROM users WHERE username == "%s";' % ( username )  #checks if the user is in the database
+    c.execute(checkUser)
+    l = c.fetchone()
+
+    for s in l:
+        if s == '':
+            return False
+    return True
+
+#testing full_user_info
+#print full_user_info("jack")
