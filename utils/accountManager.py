@@ -84,6 +84,9 @@ def register(user,password,pwd):    #user-username, password-password, pwd-retyp
     db.close()  #close database
     return messageNumber
 
+#testing register
+#register("jack", "jack", "jack")
+
 def get_item(item_id):
     return {}
 

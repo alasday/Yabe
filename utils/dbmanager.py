@@ -1,21 +1,30 @@
 import sqlite3, time
 
-def getUserInfo( userId ):
+def get_user( username ):
     ret = {}
     
     f="database.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()  #facilitate db ops
 
-    checkUser = 'SELECT *  FROM users WHERE userId=="%s";' % ( userId )  #checks if the user is in the database
+    checkUser = 'SELECT *  FROM users WHERE username == "%s";' % ( username )  #checks if the user is in the database
     c.execute(checkUser)
     l = c.fetchone()
 
-    db.commit()
-    db.close()
-    print
-
+    ret["email"] = l[3]
+    ret["addr1"] = l[4]
+    ret["addr2"] = l[5]
+    ret["addrCity"] = l[6]
+    ret["addrState"] = l[7]
+    ret["addrZip"] = l[8]
+    ret["nameF"] = l[9]
+    ret["nameL"] = l[10]
+    ret["phone"] = l[11]
+    
     return ret
+
+#testing get_user
+print get_user("jack")
 
 # new_post() -- method for creating a new post
 def new_post( owner, title, startingPrice, period ):
