@@ -116,12 +116,15 @@ noahF -- 2017-01-11 13:20
 	
 noahF -- 2017-01-11 15:00
 	Began new pages like /buy, /profile, fixing root (/)
->>>>>>> b1ac6925ffc3dd89e094a9c4ff8c1f67e2cd298d
 
 chloeD -- 2017-01-11 22:50
 	looked at routes between different pages and linked them when appropriate to avoid having to just go to action 
 	completed-type of page
 	
 chloeD -- 2017-01-11 23:45
-		started the making of a new buy post/feed. got pretty confused as to how that would be done but found old code 
-		from previous blogging projects that could guide us
+		started the making of a new buy post/feed. got pretty confused as to how that would be done but found old code from previous blogging projects that could guide us
+
+============== Wednesday, January 11th ===============
+
+jackS --2017-01-12 22:28
+- wrote function new_bid in utils/dbmanager.py to add a new bid to a given post and log it in the bids table in the db
