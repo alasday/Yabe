@@ -19,7 +19,7 @@
 <center>
 <h1> Profile </h1>
 <br>
-<h5> Hello, {{user_info.username}}! </h5>
+<h5> Hello, {{user_info["user"]}}! </h5>
 </center>
 
 {% if not filled_out %}
@@ -27,57 +27,77 @@
 <p>You have missing information! Please fill this out before continuing.</p>
 
 <form action="/profile" method="POST">
+	{% if user_info["nameF"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">First name</span><input class="form-control" type="text" name="fname" placeholder="John" required></p>
+            <p><span class="label label-primary">First name</span><input class="form-control" type="text" name="fname" placeholder="John" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["nameL"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">Last name</span><input class="form-control" type="text" name="lname" placeholder="Smith" required></p>
+            <p><span class="label label-primary">Last name</span><input class="form-control" type="text" name="lname" placeholder="Smith" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["email"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">Email</span><input class="form-control" type="email" name="email" placeholder="johnsmith@mail.com" required></p>
+            <p><span class="label label-primary">Email</span><input class="form-control" type="email" name="email" placeholder="johnsmith@mail.com" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["email"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">Confirm email</span><input class="form-control" type="email" name="emailconf" placeholder="johnsmith@mail.com" required></p>
+            <p><span class="label label-primary">Confirm email</span><input class="form-control" type="email" name="emailconf" placeholder="johnsmith@mail.com" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["addr1"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">Address line 1</span><input class="form-control" type="text" name="addr1" placeholder="1 Central Park West" required></p>
+            <p><span class="label label-primary">Address line 1</span><input class="form-control" type="text" name="addr1" placeholder="1 Central Park West" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["addr2"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">Address line 2</span><input class="form-control" type="text" name="addr2" placeholder="#32C" required></p>
+            <p><span class="label label-primary">Address line 2</span><input class="form-control" type="text" name="addr2" placeholder="#32C" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["addrCity"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">City</span><input class="form-control" type="password" name="city" placeholder="New York" required></p>
+            <p><span class="label label-primary">City</span><input class="form-control" type="text" name="city" placeholder="New York" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["addrState"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">State</span><input class="form-control" type="password" name="state" placeholder="NY" required></p>
+            <p><span class="label label-primary">State</span><input class="form-control" type="text" name="state" placeholder="NY" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["addrZip"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">Zip code</span><input class="form-control" type="password" name="zip" placeholder="10023" required></p>
+            <p><span class="label label-primary">Zip code</span><input class="form-control" type="number" name="zip" placeholder="10023" required></p>
         </div>
     </div>
+    {% endif %}
+    {% if user_info["phone"] == "" %}
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p><span class="label label-default">Phone number</span><input class="form-control" type="password" name="phone" placeholder="9177568000" required></p>
+            <p><span class="label label-primary">Phone number</span><input class="form-control" type="number" name="phone" placeholder="9177568000" required></p>
         </div>
     </div>
     <br>
+    {% endif %}
 	<input class="btn btn-primary" type="submit" name="Submit">
 </form>
 

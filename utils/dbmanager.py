@@ -20,6 +20,7 @@ def get_user( username ):
     ret["nameF"] = l[9]
     ret["nameL"] = l[10]
     ret["phone"] = l[11]
+    ret["user"] = username
     
     return ret
 
