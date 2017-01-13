@@ -110,7 +110,7 @@ def buy():
 @app.route("/profile")
 def profile():
 	if 'username' in session:
-		return render_template("profile.html",user_info = accountManager.get_user(session['username']))
+		return render_template("profile.html",user_info = dbmanager.get_user(session['username']), filled_out = False)
 	else:
 		return redirect(url_for('loginOrRegister'))
 

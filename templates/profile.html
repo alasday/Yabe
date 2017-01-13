@@ -22,63 +22,63 @@
 <h5> Hello, {{user_info.username}}! </h5>
 </center>
 
-{% if not {{filled_out}} %}
+{% if not filled_out %}
 
 <p>You have missing information! Please fill this out before continuing.</p>
 
-<form action="/authOrCreate" method="POST">
+<form action="/profile" method="POST">
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>First name: <input class="form-control" type="text" name="fname" placeholder="First name" required></a></p>
+            <p><span class="label label-default">First name</span><input class="form-control" type="text" name="fname" placeholder="John" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>Last name: <input class="form-control" type="text" name="lname" placeholder="Last name" pattern="[A-Za-z]+" required></a></p>
+            <p><span class="label label-default">Last name</span><input class="form-control" type="text" name="lname" placeholder="Smith" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>Email: <input class="form-control" type="text" name="email" pattern="[A-Za-z0-9]+" placeholder="Username" required></a></p>
+            <p><span class="label label-default">Email</span><input class="form-control" type="email" name="email" placeholder="johnsmith@mail.com" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>Confirm email: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="password" placeholder="Password" required></a></p>
+            <p><span class="label label-default">Confirm email</span><input class="form-control" type="email" name="emailconf" placeholder="johnsmith@mail.com" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>Address - Line 1: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="passconfirm" placeholder="Password" required></a></p>
+            <p><span class="label label-default">Address line 1</span><input class="form-control" type="text" name="addr1" placeholder="1 Central Park West" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>Address - Line 2: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="passconfirm" placeholder="Password" required></a></p>
+            <p><span class="label label-default">Address line 2</span><input class="form-control" type="text" name="addr2" placeholder="#32C" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>City: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="passconfirm" placeholder="Password" required></a></p>
+            <p><span class="label label-default">City</span><input class="form-control" type="password" name="city" placeholder="New York" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>State: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="passconfirm" placeholder="Password" required></a></p>
+            <p><span class="label label-default">State</span><input class="form-control" type="password" name="state" placeholder="NY" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>Zip code: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="passconfirm" placeholder="Password" required></a></p>
+            <p><span class="label label-default">Zip code</span><input class="form-control" type="password" name="zip" placeholder="10023" required></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 tooltip-wide">
-            <p>Phone number: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="passconfirm" placeholder="Password" required></a></p>
+            <p><span class="label label-default">Phone number</span><input class="form-control" type="password" name="phone" placeholder="9177568000" required></p>
         </div>
     </div>
     <br>
-	<input class="btn btn-primary" type="submit" value="register" name="logOrReg">
+	<input class="btn btn-primary" type="submit" name="Submit">
 </form>
 
 {% endif %}
