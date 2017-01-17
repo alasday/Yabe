@@ -109,7 +109,7 @@ def buy():
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
 	if request.form:
-		set_user_info(session['username'], request.form.get("email"), request.form.get("addr1"), request.form.get("addr2"), request.form.get("city"), request.form.get("state"), request.form.get("zip"), request.form.get("fname"), request.form.get("lname"), request.form.get("phone"))
+		accountManager.set_user_info(session['username'], request.form.get("email"), request.form.get("addr1"), request.form.get("addr2"), request.form.get("city"), request.form.get("state"), request.form.get("zip"), request.form.get("fname"), request.form.get("lname"), request.form.get("phone"))
 	if 'username' in session:
 		return render_template("profile.html",user_info = dbmanager.get_user(session['username']), filled_out = dbmanager.full_user_info(session['username']))
 	else:
