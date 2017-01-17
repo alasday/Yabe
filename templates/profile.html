@@ -103,11 +103,69 @@
 
 {% else %}
 
-
-
+<p>Current user info:</p>
+<br>
+<div class="row">
+	<div class="col-md-2">
+		<div class="row">
+			<span class="label label-primary">First Name:</span>
+		</div>
+		<div class="row">
+			<span class="label label-primary">Last Name:</span> 
+		</div>
+		<div class="row">
+			<span class="label label-primary">Email:</span> 
+		</div>
+		<div class="row">
+			<span class="label label-primary">Address Line 1:</span> 
+		</div>
+		<div class="row">
+			<span class="label label-primary">Address Line 2:</span> 
+		</div>
+		<div class="row">
+			<span class="label label-primary">City:</span> 
+		</div>
+		<div class="row">
+			<span class="label label-primary">State:</span> 
+		</div>
+		<div class="row">
+			<span class="label label-primary">Zip code:</span> 
+		</div>
+		<div class="row">
+			<span class="label label-primary">Phone number:</span> 
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-9">
+		<div class="row">
+			<p>{{user_info["nameF"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["nameL"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["email"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["addr1"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["addr2"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["addrCity"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["addrState"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["addrZip"]}}</p>
+		</div>
+		<div class="row">
+			<p>{{user_info["phone"]}}</p>
+		</div>
+	</div>
+</div>
 {% endif %}
-
-
-{% 
 
 {% endblock %}
