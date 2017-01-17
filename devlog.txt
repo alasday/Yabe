@@ -136,3 +136,7 @@ noahF -- 2017-01-13 13:20
 jackS -- 2017-01-13 13:15
 - wrote get_user to get information about a user
 - wrote function full_user_info to test if a user has submitted all necesary information
+
+chloeD -- 2017-01-13 14:05
+	- wrote a potential fask feed/post but commented it because it was the end of the period and I didnt have time to test 
+	it much
