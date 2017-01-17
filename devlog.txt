@@ -125,10 +125,18 @@ chloeD -- 2017-01-11 23:45
 
 ============== Wednesday, January 11th ===============
 
-jackS --2017-01-12 22:28
+jackS -- 2017-01-12 22:28
 - wrote function new_bid in utils/dbmanager.py to add a new bid to a given post and log it in the bids table in the db
 
 ============== Friday, January 12th ===============
 
 noahF -- 2017-01-13 13:20
 	-Working on profile page
+
+jackS -- 2017-01-13 13:15
+- wrote get_user to get information about a user
+- wrote function full_user_info to test if a user has submitted all necesary information
+
+chloeD -- 2017-01-13 14:05
+	- wrote a potential fask feed/post but commented it because it was the end of the period and I didnt have time to test 
+	it much
