@@ -34,12 +34,6 @@ def pay():
 	link = paypal.create_payment_for_buyer(0)
 	return render_template("pay.html",link = link)
 
-#handles the feed
-#NOTE: the homepage will be the feed! You can see what other people have requested/offered but cannot request to offer anything yourself UNTIL you log in
-@app.route("/feed") 
-def feed():
-	return render_template("feed.html")
-
 #handles input of the login register page
 
 @app.route("/authOrCreate", methods=["POST"])
@@ -79,28 +73,27 @@ def authOrCreate():
     else:
         return redirect(url_for("loginOrReg"))
 
-#@app.route("/create", methods=["GET", "POST"])
-#def create():
-#    # Create new post
-#    pass
-#
-#@app.route("/contribute", methods=["GET", "POST"])
-#def contribute():
-#    if request.method == "POST":
-#        # Add contribution to the database
-#        post_id = request.form["post_id"]
-#        return render_template("buy.html")
-#    else:
-#        # View all posts
-#        posts = []
-#        return render_template("buy.html", stories=stories)
+@app.route("/create", methods=["POST"])
+def create():
+        #get field stuff
+        new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
+        return redirect(url_for('/')) #redirect to /feed once we have a feed, we can redirect to the feed once you have made a post
+        
+@app.route("/feed", methods=["GET", "POST"])
+def feed():
+    if request.method == "POST":
+        # Add contribution to the database
+        post_id = request.form["post_id"]
+        return render_template("buy.html")
+    else:
+        # View all posts
+        posts = []
+        return render_template("feed.html")
 
 #form for item info
 @app.route("/buy")
 def buy():
 	if 'username' in session:
-        #Do we not need a form on buy.html where you input the title, startingPrice, and period? Because then we need to call new_post and put all those in:
-#               new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
 		return render_template("buy.html")
 	else:
 		return redirect(url_for('loginOrRegister'))
@@ -111,7 +104,7 @@ def profile():
 	if request.form:
 		accountManager.set_user_info(session['username'], request.form.get("email"), request.form.get("addr1"), request.form.get("addr2"), request.form.get("city"), request.form.get("state"), request.form.get("zip"), request.form.get("fname"), request.form.get("lname"), request.form.get("phone"))
 	if 'username' in session:
-		return render_template("profile.html",user_info = accountManager.get_user(session['username']), filled_out = accountManager.full_user_info(session['username']))
+		return render_template("profile.html",user_info = dbmanager.get_user(session['username']), filled_out = dbmanager.full_user_info(session['username']))
 	else:
 		return redirect(url_for('loginOrRegister'))
 
