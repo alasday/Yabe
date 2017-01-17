@@ -79,28 +79,27 @@ def authOrCreate():
     else:
         return redirect(url_for("loginOrReg"))
 
-#@app.route("/create", methods=["GET", "POST"])
-#def create():
-#    # Create new post
-#    pass
-#
-#@app.route("/contribute", methods=["GET", "POST"])
-#def contribute():
-#    if request.method == "POST":
-#        # Add contribution to the database
-#        post_id = request.form["post_id"]
-#        return render_template("buy.html")
-#    else:
-#        # View all posts
-#        posts = []
-#        return render_template("buy.html", stories=stories)
+@app.route("/create", methods=["POST"])
+def create():
+        #get field stuff
+        new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
+        return redirect(url_for('/')) #redirect to /feed once we have a feed, we can redirect to the feed once you have made a post
+        
+@app.route("/feed", methods=["GET", "POST"])
+def feed():
+    if request.method == "POST":
+        # Add contribution to the database
+        post_id = request.form["post_id"]
+        return render_template("buy.html")
+    else:
+        # View all posts
+        posts = []
+        return render_template("buy.html", stories=stories)
 
 #form for item info
 @app.route("/buy")
 def buy():
 	if 'username' in session:
-        #Do we not need a form on buy.html where you input the title, startingPrice, and period? Because then we need to call new_post and put all those in:
-#               new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
 		return render_template("buy.html")
 	else:
 		return redirect(url_for('loginOrRegister'))
