@@ -141,6 +141,8 @@ chloeD -- 2017-01-13 14:05
 	- wrote a potential fask feed/post but commented it because it was the end of the period and I didnt have time to test 
 	it much
 
+============== Tuesday, January 17th ===============
+
 chloeD -- 2017-01-17 14:02
        - worked on the feed/post functionality
 
@@ -148,3 +150,6 @@ chloeD  -- 2017-01-17 23:29
 	- spent a ridiculous amount of time reconfiguring my computer (pip, flask, ve and the like were all royally messed up on mycomputer), but that's all fixed now!
 	- found a cool way to implement AJAX into the feed
 	- worked on post and feed (it works in theory... I want to meet with sebastian and make sure we're on the same page about how it works (aka I want to verify a form thing, which he was working on in class today -- he'll push tomorrow and we'll merge our work)
+
+noahF -- 2017-01-17 13:20
+	-Worked on profile page
