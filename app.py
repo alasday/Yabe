@@ -119,6 +119,38 @@ def feed():
 #                 published=article.published)
 #    return feed.get_response()
 
+#psuedo-code for how this would work
+#def handle_request(request):
+#    data = get_more_data(request)
+#    return send_response(data)
+#
+#def handle_request(request):
+#    # If there's no data available, greenlet will sleep
+#    # and execution will be transferred to another greenlet
+#    data = get_more_data(request)
+#    return make_response(data)
+#
+#def handle_request(request):
+#    get_more_data(request, callback=on_data)
+#
+#def on_data(request):
+#    send_response(request, make_response(data))
+#
+#@coroutine
+#def handle_request(request):
+#    data = yield get_more_data(request)
+#    return make_response(data)
+#@coroutine
+#def get_mode_data(request):
+#    data = yield make_db_query(request.user_id)
+#    return data
+#
+#def process_request(request):
+#    data = get_more_data(request)
+#    return data
+
+#ACTUALLY THISLOOKS LIKE IT'S THE BEST DEMO OF A DYNAMIC FEED USINGPYTHON/AJAX: http://www.giantflyingsaucer.com/blog/?p=4310
+    
 #form for item info
 @app.route("/buy")
 def buy():
