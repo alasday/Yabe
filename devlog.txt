@@ -169,3 +169,6 @@ chloeD -- 2017-01-18 09:55
 
 noahF -- 2017-01-18 10:00
 	-working on jQuery to show/hide inputs when user wants to change certain aspects of profile
+	
+chloeD -- 2017-01-18 14:05
+	- working on post stuff with Jack and discussing certain functionalities
