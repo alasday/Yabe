@@ -1,3 +1,4 @@
+#imports
 from flask import Flask, render_template, request, session, redirect, url_for
 import hashlib
 import os
@@ -6,12 +7,14 @@ from utils import paypal
 from utils import dbmanager
 from utils import accountManager
 import urllib2, json
-  
+
+#create a flask app (secret key created when initialize.py is run)
 app = Flask(__name__)
 f = open( "utils/key", 'r' )
 app.secret_key = "hello"#f.read();
 f.close()
 
+#the default page is allows you to choose to login or register
 @app.route("/")
 def loginOrRegister():
 	if 'username' in session:
@@ -19,14 +22,17 @@ def loginOrRegister():
 	else:
 		return render_template("index.html")
 
+#register page if you don't already have an account
 @app.route("/register")
 def register():
 	return render_template("register.html")
-	
+
+#login page if you already have an account
 @app.route("/login")
 def login():
 	return render_template("login.html")
 
+#payment page (you have to be logged in to pay for something)
 @app.route("/pay")
 def pay():
 	#item = dbmanager.get_item(item_id)
@@ -35,7 +41,7 @@ def pay():
 	return render_template("pay.html",link = link)
 
 #handles input of the login register page
-
+#authenticates/creates accounts
 @app.route("/authOrCreate", methods=["POST"])
 def authOrCreate():
     formDict = request.form
@@ -73,12 +79,14 @@ def authOrCreate():
     else:
         return redirect(url_for("loginOrReg"))
 
+#creates a buy request post
 @app.route("/create", methods=["POST"])
 def create():
         #get field stuff
         new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
         return redirect(url_for('/')) #redirect to /feed once we have a feed, we can redirect to the feed once you have made a post
-        
+
+#creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
 def feed():
     if request.method == "POST":
@@ -123,12 +131,14 @@ def logout():
 def buytest():
 	print paypal.create_payment_for_buyer(0)
         return "check console"
-	
+
+#execute the paypal payment
 @app.route('/buyexec', methods=["POST", "GET"])
 def buyexec():
 	print paypal.execute_payment_for_buyer()
         return "check paypal"
-    
+
+#run the app
 if __name__ == "__main__":
     app.debug = True
     app.run()
