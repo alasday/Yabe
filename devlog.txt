@@ -143,6 +143,9 @@ chloeD -- 2017-01-13 14:05
 
 ============== Tuesday, January 17th ===============
 
+noahF -- 2017-01-17 13:20
+	-Worked on profile page
+
 chloeD -- 2017-01-17 14:02
        - worked on the feed/post functionality
 
@@ -151,5 +154,15 @@ chloeD  -- 2017-01-17 23:29
 	- found a cool way to implement AJAX into the feed
 	- worked on post and feed (it works in theory... I want to meet with sebastian and make sure we're on the same page about how it works (aka I want to verify a form thing, which he was working on in class today -- he'll push tomorrow and we'll merge our work)
 
-noahF -- 2017-01-17 13:20
-	-Worked on profile page
+============== Wednesday, January 18th ===============
+
+chloeD -- 2017-01-17 9:55
+       - waiting on a form from buy.html to make sure code for post
+       works (will mess around and do some tests in class)
+       - looked at AJAX/Python dymnamic feed demos online (I put some
+       examples in app.py, which are commented out to not break the
+       program, but my plan is to first make sure the post works
+       exactly how we want it, then make the regular feed where you
+       have to refresh the page yourself, andthen if we have time and
+       the regular feed works with bidding and all that functionality,
+       then we can make the feed dynamic)
