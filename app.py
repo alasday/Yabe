@@ -172,9 +172,10 @@ def profile():
 #when updating user info
 @app.route("/profileupdate", methods=["POST"])
 def profileupdate():
+	user_info = accountManager.get_user(session['username'])
 	if 'username' in session and request.form:
 		if request.form.get("inputChangeNameF") == '':
-		
+			nameF = user_info["fname"]
 		else:
 		
 		if request.form.get("inputChangeNameL") == '':
