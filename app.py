@@ -83,8 +83,8 @@ def authOrCreate():
 @app.route("/create", methods=["POST"])
 def create():
         #get field stuff
-        new_post(session['username'], request.form["title"], request.form["startingPrice"],request.form["period"])
-        return redirect(url_for('/')) #redirect to /feed once we have a feed, we can redirect to the feed once you have made a post
+        dbmanager.new_post(session['username'], request.form["title"], int(request.form["startingPrice"]),int(request.form["period"]))
+        return redirect('/feed')) #redirect to /feed once we have a feed, we can redirect to the feed once you have made a post
 
 #creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
