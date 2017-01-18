@@ -162,12 +162,54 @@ def buy():
 #form for profile, show specific profile info
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
-	if request.form:
+	if request.form and not accountManager.full_user_info(session['username']):
 		accountManager.set_user_info(session['username'], request.form.get("email"), request.form.get("addr1"), request.form.get("addr2"), request.form.get("city"), request.form.get("state"), request.form.get("zip"), request.form.get("fname"), request.form.get("lname"), request.form.get("phone"))
 	if 'username' in session:
 		return render_template("profile.html",user_info = accountManager.get_user(session['username']), filled_out = accountManager.full_user_info(session['username']))
 	else:
 		return redirect(url_for('loginOrRegister'))
+
+#when updating user info
+@app.route("/profileupdate", methods=["POST"])
+def profileupdate():
+	if 'username' in session and request.form:
+		if request.form.get("inputChangeNameF") == '':
+		
+		else:
+		
+		if request.form.get("inputChangeNameL") == '':
+		
+		else:
+		
+		if request.form.get("inputChangeEmail") == '':
+		
+		else:
+		
+		if request.form.get("inputChangeAddr1") == '':
+		
+		else:
+		
+		if request.form.get("inputChangeAddr2") == '':
+		
+		else:
+		
+		if request.form.get("inputChangeCity") == '':
+		
+		else:
+		
+		if request.form.get("inputChangeState") == '':
+		
+		else:
+		
+		if request.form.get("inputChangeZip") == '':
+		
+		else:
+		
+		if request.form.get("inputChangePhone") == '':
+		
+		else:
+		
+	return redirect("/profile")
 
 #logout of user
 @app.route('/logout', methods=["POST", "GET"])

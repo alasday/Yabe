@@ -1,13 +1,25 @@
+//format function from a kind soul on stack overflow
+String.prototype.format = function() {
+  var str = this;
+  for (var i = 0; i < arguments.length; i++) {       
+    var reg = new RegExp("\\{" + i + "\\}", "gm");             
+    str = str.replace(reg, arguments[i]);
+  }
+  return str;
+}
+
 $(document).ready(function() {
 	$('.showhide-form').hide();
 	
 	$('input[type="checkbox"]').click(function() {
-		if($(this).checked=true) {
-			console.log("#input-{0}".format($(this).attr('id')))
-			$("#input-{0}".format($(this).attr('id'))).show();
-		}
+		$("#input-{0}".format($(this).attr('id'))).toggle();
+		/*
 		if($(this).checked=false) {
 			$("#input-{0}".format($(this).attr('id'))).hide();
 		}
+		else {
+			$("#input-{0}".format($(this).attr('id'))).show();
+		}
+		*/
 	});
 });
