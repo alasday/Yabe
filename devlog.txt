@@ -156,7 +156,7 @@ chloeD  -- 2017-01-17 23:29
 
 ============== Wednesday, January 18th ===============
 
-chloeD -- 2017-01-17 9:55
+chloeD -- 2017-01-18 09:55
        - waiting on a form from buy.html to make sure code for post
        works (will mess around and do some tests in class)
        - looked at AJAX/Python dymnamic feed demos online (I put some
@@ -166,3 +166,6 @@ chloeD -- 2017-01-17 9:55
        have to refresh the page yourself, andthen if we have time and
        the regular feed works with bidding and all that functionality,
        then we can make the feed dynamic)
+
+noahF -- 2017-01-18 10:00
+	-working on jQuery to show/hide inputs when user wants to change certain aspects of profile
