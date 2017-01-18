@@ -172,44 +172,53 @@ def profile():
 #when updating user info
 @app.route("/profileupdate", methods=["POST"])
 def profileupdate():
-	user_info = accountManager.get_user(session['username'])
 	if 'username' in session and request.form:
+		user_info = accountManager.get_user(session['username'])
 		if request.form.get("inputChangeNameF") == '':
-			nameF = user_info["fname"]
+			nameF = user_info["nameF"]
 		else:
-		
+			nameF = request.form.get("inputChangeNameF")
+			
 		if request.form.get("inputChangeNameL") == '':
-		
+			nameL = user_info["nameL"]
 		else:
-		
+			nameL = request.form.get("inputChangeNameL")
+			
 		if request.form.get("inputChangeEmail") == '':
-		
+			email = user_info["email"]
 		else:
-		
+			email = request.form.get("inputChangeEmail")
+			
 		if request.form.get("inputChangeAddr1") == '':
-		
+			addr1 = user_info["addr1"]
 		else:
-		
+			addr1 = request.form.get("inputChangeAddr1")
+			
 		if request.form.get("inputChangeAddr2") == '':
-		
+			addr2 = user_info["addr2"]
 		else:
-		
+			addr2 = request.form.get("inputChangeAddr2")
+			
 		if request.form.get("inputChangeCity") == '':
-		
+			city = user_info["addrCity"]
 		else:
-		
+			city = request.form.get("inputChangeCity")
+			
 		if request.form.get("inputChangeState") == '':
-		
+			state = user_info["addrState"]
 		else:
-		
+			state = request.form.get("inputChangeState")
+			
 		if request.form.get("inputChangeZip") == '':
-		
+			zip = user_info["addrZip"]
 		else:
-		
+			zip = request.form.get("inputChangeZip")
+			
 		if request.form.get("inputChangePhone") == '':
-		
+			phone = user_info["phone"]
 		else:
-		
+			phone = request.form.get("inputChangePhone")
+		accountManager.set_user_info(session["username"], email, addr1, addr2, city, state, zip, nameF, nameL, phone)
 	return redirect("/profile")
 
 #logout of user
