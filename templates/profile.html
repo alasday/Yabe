@@ -102,90 +102,202 @@
 </form>
 
 {% else %}
-
-<p>Current user info:</p>
+<hr>
+<div class="row">
+	<div class="col-md-2">
+		<p>Current user info:</p>
+	</div>
+	<div class="col-md-3"></div>
+	<div class="col-md-4">
+		<p>Select checkboxes to change:</p>
+	</div>
+</div>
 <br>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">First Name:</span>
+<form action="/profile" method="POST" autocomplete="off">
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">First Name:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["nameF"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeNameF"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeNameF">
+				<label for="inputChangeNameF">New First Name</label>
+				<input type="text" class="form-control" name="inputChangeNameF">
+			</div>
+		</div>
 	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["nameF"]}}</p>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Last Name:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["nameL"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeNameL"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeNameL">
+				<label for="inputChangeNameL">New Last Name</label>
+				<input type="text" class="form-control" name="inputChangeNameL">
+			</div>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">Last Name:</span>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Email:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["email"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeEmail"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeEmail">
+				<label for="inputChangeEmail">New Email</label>
+				<input type="text" class="form-control" name="inputChangeEmail">
+			</div>
+		</div>
 	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["nameL"]}}</p>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Address Line 1:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addr1"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeAddr1"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeAddr1">
+				<label for="inputChangeAddr1">New Address Line 1</label>
+				<input type="text" class="form-control" name="inputChangeAddr1">
+			</div>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">Email:</span>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Address Line 2:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addr2"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeAddr2"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeAddr2">
+				<label for="inputChangeAddr2">New Address Line 2</label>
+				<input type="text" class="form-control" name="inputChangeAddr2">
+			</div>
+		</div>
 	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["email"]}}</p>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">City:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addrCity"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeCity"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeCity">
+				<label for="inputChangeCity">New City</label>
+				<input type="text" class="form-control" name="inputChangeCity">
+			</div>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">Address Line 1:</span>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">State:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addrState"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeState"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeState">
+				<label for="inputChangeState">New State</label>
+				<input type="text" class="form-control" name="inputChangeState">
+			</div>
+		</div>
 	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["addr1"]}}</p>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Zip Code:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addrZip"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeZip"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeZip">
+				<label for="inputChangeZip">New Zip Code</label>
+				<input type="text" class="form-control" name="inputChangeZip">
+			</div>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">Address Line 2:</span>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Phone Number:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["phone"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changePhone"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changePhone">
+				<label for="inputChangePhone">New Phone Number</label>
+				<input type="text" class="form-control" name="inputChangePhone">
+			</div>
+		</div>
 	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["addr2"]}}</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">City:</span>
-	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["addrCity"]}}</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">State:</span>
-	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["addrState"]}}</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">Zip Code:</span>
-	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["addrZip"]}}</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<span class="label label-primary">Phone number:</span>
-	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<p>{{user_info["phone"]}}</p>
-	</div>
-</div>
+</form>
+
+<script language="JavaScript" type="text/javascript" src="../static/js/jquery-3.1.1.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="../static/js/showhide-profile.js"></script>
 {% endif %}
 
 {% endblock %}
