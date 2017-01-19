@@ -71,9 +71,9 @@ def get_post( postId ):
         period = "This listing has expired"
     else:
         if periodSeconds / secondsPerDay > 2:
-            period = periodSeconds / secondsPerDay + "days"
+            period = str(int(periodSeconds / secondsPerDay)) + " days"
         else:
-            period = periodSeconds / secondsPerHour + "hours"
+            period = str(int(periodSeconds / secondsPerHour)) + " hours"
 
     dict['period'] = period        
         
