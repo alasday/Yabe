@@ -173,6 +173,9 @@ noahF -- 2017-01-18 10:00
 chloeD -- 2017-01-18 14:05
 	- working on post stuff with Jack and discussing certain functionalities
 
+noahF -- 2017-01-18 13:20
+	-finished jQuery showing/hiding, need to make it actually update info
+
 jackS -- 2017-01-18 21:58
 - made new_post return postId because chloe asked me to
 
@@ -181,3 +184,14 @@ chloeD -- 2017-01-18 23:42
 	- worked on the post
 	- made a post.html page (I threw some filler stuff in--aka copy/paste from a different html page just to see if the page would load)
 	- theres still an issue and with the postid sepcified post page and I tried testing it a bunch of times and trying new things but I'm sort of stuck and sort of need a legit post.html
+
+noahF -- 2017-01-18 18:30
+	-Finished profile page entirely, works flawlessly (I believe)
+	
+============== Thursday, January 19th ===============
+noahF -- 2017-01-19 13:20
+	-Made a quick individual post page
+	-Began a quick feed page
+	
+noahF -- 2017-01-19 17:15
+	-Finished quick feed page, should work once Jack's function is finished
