@@ -54,12 +54,29 @@ def get_post( postId ):
     q = "SELECT * FROM posts WHERE postId  = '%s';" % ( postId )
     c.execute( q )
 
-    lit = c.fetchall()
+    lit = c.fetchone()
 
     dict = {}
-    dict["title"] = lit[0][2]
-    dict["startingPrice"] = lit[0][3]
-    dict['postId'] = lit[0][1]
+    dict["title"] = lit[2]
+    dict["startingPrice"] = lit[3]
+    dict['postId'] = lit[1]
+
+    expires = lit[5]
+    currentDate = time.time()
+    periodSeconds = expires - currentDate
+    secondsPerDay = 86400
+    secondsPerHour = 3600
+    
+    if periodSeconds < 0:
+        period = "This listing has expired"
+    else:
+        if periodSeconds / secondsPerDay > 2:
+            period = periodSeconds / secondsPerDay + "days"
+        else:
+            period = periodSeconds / secondsPerHour + "hours"
+
+    dict['period'] = period        
+        
     
     db.commit()
     db.close()
