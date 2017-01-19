@@ -85,14 +85,12 @@ def create():
         #get field stuff
         pId = dbmanager.new_post(session['username'], request.form["title"], int(request.form["startingPrice"]),int(request.form["period"]))
         #return redirect('/post/<int: postId>')
-        post(pId)
-        return redirect('/post/<int:postId>')
+        return redirect(url_for('post',postId = pId))
 
 #actually posts the buy request post
 @app.route('/post/<int:postId>')
-@app.route('/post')
 #@app.route("/post/<int: postId>/<int:Period>")
-def post(postId):
+def post(postId=None):
     return render_template("post.html", postId = postId, username = session['username'], title = dbmanager.get_post(postId)['title'], startingPrice = dbmanager.get_post(postId)['startingPrice'])
     #return render_template("post.html", postId = postId, username = session['username'], title = dbmanager.get_post(postId)['title'], startingPrice = dbmanager.get_post(postId)['startingPrice'], period = dbmanager.get_post(postId)['period'])
     
