@@ -19,29 +19,291 @@
 <center>
 <h1> Profile </h1>
 <br>
-<h5> Hello, {{username}}! </h5>
+<h5> Hello, {{user_info["user"]}}! </h5>
 </center>
 
-<div class="container">
-    {% set i = 0 %}
-    {% for image in images %}
-  <h4>{{ image[1] }}</h4>
-	<a href="{{ url_for('static', filename = 'images' + image[0])}}" data-lightbox="image" data-title="{{tagStrings[i]}}">
-	{% set i = i + 1 %}
-	  <img class="index" src="{{ url_for('static', filename = 'images' + image[0]) }}" height="300"></img></a>
-	<br>
-	 posted by {{ image[2] }} <br><br><br><br>
-    {% endfor %}
-  
+{% if not filled_out %}
+
+<p>You have missing information! Please fill this out before continuing.</p>
+
+<form action="/profile" method="POST">
+	{% if user_info["nameF"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">First name</span><input class="form-control" type="text" name="fname" placeholder="John" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["nameL"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">Last name</span><input class="form-control" type="text" name="lname" placeholder="Smith" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["email"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">Email</span><input class="form-control" type="email" name="email" placeholder="johnsmith@mail.com" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["email"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">Confirm email</span><input class="form-control" type="email" name="emailconf" placeholder="johnsmith@mail.com" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["addr1"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">Address line 1</span><input class="form-control" type="text" name="addr1" placeholder="1 Central Park West" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["addr2"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">Address line 2</span><input class="form-control" type="text" name="addr2" placeholder="#32C" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["addrCity"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">City</span><input class="form-control" type="text" name="city" placeholder="New York" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["addrState"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">State</span><input class="form-control" type="text" name="state" placeholder="NY" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["addrZip"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">Zip code</span><input class="form-control" type="number" name="zip" placeholder="10023" required></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if user_info["phone"] == "" %}
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p><span class="label label-primary">Phone number</span><input class="form-control" type="number" name="phone" placeholder="9177568000" required></p>
+        </div>
+    </div>
+    <br>
+    {% endif %}
+	<input class="btn btn-primary" type="submit" name="Submit">
+</form>
+
+{% else %}
+<hr>
+<div class="row">
+	<div class="col-md-2">
+		<p>Current user info:</p>
+	</div>
+	<div class="col-md-3"></div>
+	<div class="col-md-4">
+		<p>Select checkboxes to change:</p>
+	</div>
 </div>
+<br>
+<form action="/profileupdate" method="POST" autocomplete="off">
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">First Name:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["nameF"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeNameF"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeNameF">
+				<label for="inputChangeNameF">New First Name</label>
+				<input type="text" class="form-control" name="inputChangeNameF">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Last Name:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["nameL"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeNameL"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeNameL">
+				<label for="inputChangeNameL">New Last Name</label>
+				<input type="text" class="form-control" name="inputChangeNameL">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Email:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["email"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeEmail"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeEmail">
+				<label for="inputChangeEmail">New Email</label>
+				<input type="text" class="form-control" name="inputChangeEmail">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Address Line 1:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addr1"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeAddr1"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeAddr1">
+				<label for="inputChangeAddr1">New Address Line 1</label>
+				<input type="text" class="form-control" name="inputChangeAddr1">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Address Line 2:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addr2"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeAddr2"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeAddr2">
+				<label for="inputChangeAddr2">New Address Line 2</label>
+				<input type="text" class="form-control" name="inputChangeAddr2">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">City:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addrCity"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeCity"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeCity">
+				<label for="inputChangeCity">New City</label>
+				<input type="text" class="form-control" name="inputChangeCity">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">State:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addrState"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeState"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeState">
+				<label for="inputChangeState">New State</label>
+				<input type="text" class="form-control" name="inputChangeState">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Zip Code:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["addrZip"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changeZip"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changeZip">
+				<label for="inputChangeZip">New Zip Code</label>
+				<input type="text" class="form-control" name="inputChangeZip">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<span class="label label-primary">Phone Number:</span>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<p>{{user_info["phone"]}}</p>
+		</div>
+		<div class="col-md-1">
+			<div class="checkbox">
+				<input type="checkbox" id="changePhone"></input>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group showhide-form" id="input-changePhone">
+				<label for="inputChangePhone">New Phone Number</label>
+				<input type="text" class="form-control" name="inputChangePhone">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6"></div>
+		<div class="col-md-2">
+			<input type="submit" class="btn btn-info" value="Submit">
+		</div>
+	</div>
+</form>
 
+<script language="JavaScript" type="text/javascript" src="../static/js/jquery-3.1.1.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="../static/js/showhide-profile.js"></script>
+{% endif %}
 
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-     $("img.lazy").lazyload({
-         effect : "fadeIn"
-     });
-
-  });
-  </script>
 {% endblock %}

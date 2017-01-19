@@ -87,11 +87,6 @@ def register(user,password,pwd):    #user-username, password-password, pwd-retyp
 #testing register
 #register("jack", "jack", "jack")
 
-def get_item(item_id):
-    return {}
-
-def get_user(user_id):
-    return {}
 
 #set_user_info
 def set_user_info( username, email, addr1, addr2, addrCity, addrState, addrZip, nameF, nameL, phone):
@@ -109,3 +104,47 @@ def set_user_info( username, email, addr1, addr2, addrCity, addrState, addrZip, 
     db.close()
 
 set_user_info("jack", "testemail.com", "230 b 142", "11844", "nyc", "NY", "11694", "Jack", "Schluger", "917 391 7995")
+
+def full_user_info( username ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    checkUser = 'SELECT *  FROM users WHERE username == "%s";' % ( username )  #checks if the user is in the database
+    c.execute(checkUser)
+    l = c.fetchone()
+
+    for s in l:
+        if s == '':
+            return False
+    return True
+
+#testing full_user_info
+#print full_user_info("jack")
+
+def get_user( username ):
+    ret = {}
+    
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    checkUser = 'SELECT *  FROM users WHERE username == "%s";' % ( username )  #checks if the user is in the database
+    c.execute(checkUser)
+    l = c.fetchone()
+
+    ret["email"] = l[3]
+    ret["addr1"] = l[4]
+    ret["addr2"] = l[5]
+    ret["addrCity"] = l[6]
+    ret["addrState"] = l[7]
+    ret["addrZip"] = l[8]
+    ret["nameF"] = l[9]
+    ret["nameL"] = l[10]
+    ret["phone"] = l[11]
+    ret["user"] = username
+    
+    return ret
+
+#testing get_user
+#print get_user("jack")

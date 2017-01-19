@@ -40,7 +40,6 @@ noahF -- 2017-01-08 20:00
 	Nearly finished testing library, need to do an actual payment test
 
 =============== Monday, January 9th ===============
-<<<<<<< HEAD
 
 sebastianC -- 2017-01-09 13:39
 	   Added all the templates for basic login, feed, and upload
@@ -126,5 +125,59 @@ chloeD -- 2017-01-11 23:45
 
 ============== Wednesday, January 11th ===============
 
-jackS --2017-01-12 22:28
+jackS -- 2017-01-12 22:28
 - wrote function new_bid in utils/dbmanager.py to add a new bid to a given post and log it in the bids table in the db
+
+============== Friday, January 12th ===============
+
+noahF -- 2017-01-13 13:20
+	-Working on profile page
+
+jackS -- 2017-01-13 13:15
+- wrote get_user to get information about a user
+- wrote function full_user_info to test if a user has submitted all necesary information
+
+chloeD -- 2017-01-13 14:05
+	- wrote a potential fask feed/post but commented it because it was the end of the period and I didnt have time to test 
+	it much
+
+============== Tuesday, January 17th ===============
+
+noahF -- 2017-01-17 13:20
+	-Worked on profile page
+
+chloeD -- 2017-01-17 14:02
+       - worked on the feed/post functionality
+
+chloeD  -- 2017-01-17 23:29
+	- spent a ridiculous amount of time reconfiguring my computer (pip, flask, ve and the like were all royally messed up on mycomputer), but that's all fixed now!
+	- found a cool way to implement AJAX into the feed
+	- worked on post and feed (it works in theory... I want to meet with sebastian and make sure we're on the same page about how it works (aka I want to verify a form thing, which he was working on in class today -- he'll push tomorrow and we'll merge our work)
+
+============== Wednesday, January 18th ===============
+
+chloeD -- 2017-01-18 09:55
+       - waiting on a form from buy.html to make sure code for post
+       works (will mess around and do some tests in class)
+       - looked at AJAX/Python dymnamic feed demos online (I put some
+       examples in app.py, which are commented out to not break the
+       program, but my plan is to first make sure the post works
+       exactly how we want it, then make the regular feed where you
+       have to refresh the page yourself, andthen if we have time and
+       the regular feed works with bidding and all that functionality,
+       then we can make the feed dynamic)
+
+noahF -- 2017-01-18 10:00
+	-working on jQuery to show/hide inputs when user wants to change certain aspects of profile
+	
+chloeD -- 2017-01-18 14:05
+	- working on post stuff with Jack and discussing certain functionalities
+
+jackS -- 2017-01-18 21:58
+- made new_post return postId because chloe asked me to
+
+chloeD -- 2017-01-18 23:42
+	- laughed at jack's most recent devlog entry
+	- worked on the post
+	- made a post.html page (I threw some filler stuff in--aka copy/paste from a different html page just to see if the page would load)
+	- theres still an issue and with the postid sepcified post page and I tried testing it a bunch of times and trying new things but I'm sort of stuck and sort of need a legit post.html

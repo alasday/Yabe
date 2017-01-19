@@ -1,0 +1,13 @@
+.label-block {
+    font-weight: normal;
+    display: block;
+    padding: 6px 12px;
+    margin: 0;
+    border: 1px solid transparent;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    width: 100%;
+}
