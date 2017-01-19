@@ -1,0 +1,49 @@
+//SEBASTIAN WE NEED A POST.HTML PAGE THAT WILL DISPLAY AN INDIVIDUAL
+POST
+//THIS IS JUST A COPY PASTE FROMREGISTER.HTML
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<title>Register</title>
+<style>
+.tooltip-wide .tooltip{
+    min-width:400px;
+}
+</style>
+{% endblock %}
+
+{% block navbar %}
+<li><a href = "/login"> Login </a></li>
+{% endblock %}
+
+{% block body %}
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    container:'body'
+});
+</script>
+
+<h1>Register for an account</h1><br>
+<form action="/authOrCreate" method="POST">
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p>Username: <a href="#" data-toggle="tooltip" title="Alphanumeric characters only." data-placement="right"><input class="form-control" type="text" name="username" pattern="[A-Za-z0-9]+" placeholder="Username" required></a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p>Password: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="password" placeholder="Password" required></a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 tooltip-wide">
+            <p>Confirm Password: <a href="#" data-toggle="tooltip" title="Must be more than 5 characters." data-placement="right"><input class="form-control" type="password" name="passconfirm" placeholder="Password" required></a></p>
+        </div>
+    </div>
+    
+    <br>
+<input class="btn btn-primary" type="submit" value="register" name="logOrReg">
+{% endblock %}
