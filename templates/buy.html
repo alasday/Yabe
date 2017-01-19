@@ -12,34 +12,42 @@
 {% endblock %}
 {% block body %}
 <center>
-<h3> Upload A New Image </h3>
+<h3>Create New Purchase Request</h3>
 <p class="bg-info"> Accepted image format: png, jpg, jpeg, PNG, JPG, JPEG </p>
 </center>
 <br><br>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <form method='POST' action="/upload/local" enctype="multipart/form-data">
-	<h4>Upload From My Machine</h4><br><br>
 	<div class="form-group">
-	  <div class="col-xs-6">
+	  <div class="col-md-2"></div>
+	  <div class="col-md-4">
 	    Choose Image:<br> <input type="file" name="file" class="form-control" required><br><br>
-	    Image Name:<br> <input type=text" name="filename" class="form-control" placeholder="Punctuation will be removed"required><br><br>
+	    Product Name:<br> <input type="text" name="filename" class="form-control" placeholder="Punctuation will be removed"required><br><br>
+	    Starting Price:<br> <input type="text" name="price" class="form-control" required><br><br>
             <input type="submit" value="Upload">
+	  </div>
+	  <div class="col-md-4">
+	    Time for Bidding:<br> <input type="text" name="time" class="form-control" required><br><br>
+	    Product Description and Specs:<br> <textarea class="form-control" rows="3"></textarea><br><br>
 	  </div>
 	</div>
       </form>
     </div>
-    <div class="col-md-6">
+    <!--<div class="col-md-6">
       <form method='POST' action="/upload/web">
-	<h4>Upload From Internet</h4><br><br>
+	<h4>Image From Internet</h4><br><br>
 	<div class="form-group">
 	  <div class="col-xs-6">
 	    Image Link: <input type="text" name="link" placeholder="Enter image link" class="form-control" required><br><br>
-	    Image Name: <input type="text" name="filename" placeholder="Punctuation will be removed" class="form-control" required><br><br>
+	    Product Name: <input type="text" name="filename" class="form-control" required><br><br>
+	    Starting Price:<br> <input type="text" name="price" class="form-control" required><br><br>
+            Time for Bidding:<br> <input type="text" name="time" class="form-control" required><br><br>
+	    Product Description and Specs:<br> <textarea class="form-control" rows="3"></textarea><br><br>
 	    <input type="submit" value="Upload">
 	  </div>
 	</div>
       </form>
-    </div>
+    </div>-->
   </div>
 {% endblock %}
