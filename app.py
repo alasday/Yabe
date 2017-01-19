@@ -102,8 +102,12 @@ def feed():
         return render_template("buy.html")
     else:
         # View all posts
+        if "username" in session:
+        	username = session["username"]
+        else:
+        	username = ""
         posts = []
-        return render_template("feed.html")
+        return render_template("feed.html",username=username)
 
 #THIS IS A WAY I FOUND (http://flask.pocoo.org/snippets/10/) THAT ALLOWS US TO INCORPORATE AJAX INTO THE FEED
 #from urlparse import urljoin
