@@ -2,6 +2,7 @@ import sqlite3, time
 
 
 # new_post() -- method for creating a new post
+# @returns postId
 def new_post( owner, title, startingPrice, period ):
     f="database.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -31,7 +32,10 @@ def new_post( owner, title, startingPrice, period ):
 
     db.commit()
     db.close()
+    
+    return postId
 
+    
 #testing new_post
 #new_post("jim", "im lit ", 12, 12)
 
