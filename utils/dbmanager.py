@@ -95,18 +95,23 @@ def get_posts( number  ):
 
     now = time.time()
     
-    q = "SELECT postId FROM posts WHERE expires  < %d;" % ( now )
+    q = "SELECT postId FROM posts WHERE expires > %d;" % ( now )
     c.execute( q )
     
     ids = c.fetchone()
 
-    
+    ret = []
+    start = len(ids) - number
+    if start > 0:
+        for i in range( start, len(ids) ):
+            ret.append( get_post( ids[i] ) )
+    else:
+        for i in range( len(ids) ):
+            ret.append( get_post( ids[i] ) )
+    return ret
 
-
-
-
-
-    
+#testing get_posts
+print get_posts(100)
 
 # new_bid()
 # adds a bid to a given item
