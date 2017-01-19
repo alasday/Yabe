@@ -76,7 +76,9 @@ def get_post( postId ):
             period = str(int(periodSeconds / secondsPerHour)) + " hours"
 
     dict['period'] = period        
-        
+
+    dict['owner'] = "owner"
+    
     
     db.commit()
     db.close()
@@ -85,6 +87,26 @@ def get_post( postId ):
 
 #testing get_post
 #print get_post( 0 )
+
+def get_posts( number  ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    now = time.time()
+    
+    q = "SELECT postId FROM posts WHERE expires  < %d;" % ( now )
+    c.execute( q )
+    
+    ids = c.fetchone()
+
+    
+
+
+
+
+
+    
 
 # new_bid()
 # adds a bid to a given item
