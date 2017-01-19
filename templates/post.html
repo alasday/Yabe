@@ -5,7 +5,7 @@ POST
 
 {% block head %}
 {{ super() }}
-<title>Register</title>
+<title>Post</title>
 <style>
 .tooltip-wide .tooltip{
     min-width:400px;
@@ -26,8 +26,8 @@ $(document).ready(function(){
 });
 </script>
 
-<h1>Register for an account</h1><br>
-<form action="/authOrCreate" method="POST">
+<h1>Title</h1><br>
+<form action="/post" method="POST">
     <div class="row">
         <div class="col-md-6 tooltip-wide">
             <p>Username: <a href="#" data-toggle="tooltip" title="Alphanumeric characters only." data-placement="right"><input class="form-control" type="text" name="username" pattern="[A-Za-z0-9]+" placeholder="Username" required></a></p>
