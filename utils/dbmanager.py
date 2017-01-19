@@ -111,7 +111,7 @@ def get_posts( number  ):
     return ret
 
 #testing get_posts
-print get_posts(100)
+#print get_posts(100)
 
 # new_bid()
 # adds a bid to a given item

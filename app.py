@@ -107,7 +107,7 @@ def feed():
         else:
         	username = ""
         posts = []
-        return render_template("feed.html",username=username)
+        return render_template("feed.html",username=username,posts=dbmanager.get_posts(100))
 
 #THIS IS A WAY I FOUND (http://flask.pocoo.org/snippets/10/) THAT ALLOWS US TO INCORPORATE AJAX INTO THE FEED
 #from urlparse import urljoin
