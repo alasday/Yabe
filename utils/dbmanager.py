@@ -88,7 +88,7 @@ def get_post( postId ):
 #testing get_post
 #print get_post( 0 )
 
-def get_posts( number  ):
+def get_posts( number ):
     f="database.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()  #facilitate db ops
@@ -98,20 +98,22 @@ def get_posts( number  ):
     q = "SELECT postId FROM posts WHERE expires > %d;" % ( now )
     c.execute( q )
     
-    ids = c.fetchone()
-
-    ret = []
+    ids = c.fetchall()
+    
     start = len(ids) - number
     if start > 0:
+        ret = [None] * (number)
         for i in range( start, len(ids) ):
-            ret.append( get_post( ids[i] ) )
+            ret[number - (i - start + 1)] =  get_post( ids[i][0] )
     else:
+        ret = [None] * len(ids)
         for i in range( len(ids) ):
-            ret.append( get_post( ids[i] ) )
+            ret[len(ids) - (i + 1)] = get_post( ids[i][0] ) 
+                  
     return ret
 
 #testing get_posts
-#print get_posts(100)
+#print get_posts(5)
 
 # new_bid()
 # adds a bid to a given item
