@@ -2,20 +2,11 @@
 
 {% block head %}
 {{ super() }}
-<script src="/static/js/lazyload.js"></script>
+<!--<script src="/static/js/lazyload.js"></script>-->
 {% endblock %}
 
 {% block navbar %}
-{% if username %}
-<li><a class="nav-item nav-link" href = "/profile"> Profile </a></li>
-<li><a class="nav-item nav-link" href = "/buy"> Buy </a></li>
-<li><a class="nav-item nav-link" href = "/logout"> Logout </a></li>
-
-
-{% else %}
-<li><a class="nav-item nav-link" href="/register">Register</a></li>
-<li><a class="nav-item nav-link" href="/login">Login</a></li>
-{% endif %}
+{{ super() }}
 {% endblock %}
 
 {% block body %}
