@@ -115,6 +115,29 @@ def get_posts( number ):
 #testing get_posts
 #print get_posts(5)
 
+def get_posts_by_username( username ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    now = time.time()
+    
+    q = "SELECT postId FROM posts WHERE owner = '%s'  ;" % ( username )
+    c.execute( q )
+    
+    ids = c.fetchall()
+
+    ret = [None] * len(ids)
+    for i in range( len(ids) ):
+        ret[len(ids) - (i + 1)] = get_post( ids[i][0] ) 
+              
+    return ret
+
+#testing get_posts_by_username
+#print get_posts_by_username('jim')
+
+
+
 # new_bid()
 # adds a bid to a given item
 def new_bid( bidder, postId, price ):
