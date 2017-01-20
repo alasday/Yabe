@@ -57,9 +57,10 @@ def get_post( postId ):
     lit = c.fetchone()
 
     dict = {}
+    dict['owner'] = lit[0]
+    dict['postId'] = lit[1]
     dict["title"] = lit[2]
     dict["startingPrice"] = lit[3]
-    dict['postId'] = lit[1]
 
     expires = lit[5]
     currentDate = time.time()
@@ -77,7 +78,6 @@ def get_post( postId ):
 
     dict['period'] = period        
 
-    dict['owner'] = "owner"
     
     
     db.commit()
