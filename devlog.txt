@@ -195,3 +195,13 @@ noahF -- 2017-01-19 13:20
 	
 noahF -- 2017-01-19 17:15
 	-Finished quick feed page, should work once Jack's function is finished
+
+jackS -- 2017-01-19 23:59
+- wrote get_posts
+- wrote get_posts_by_username
+
+============== Friday, January 20th ===============
+
+jackS -- 2017-01-20 13:56
+- wrote get_bid(bidId), to return info about one bid
+- wrote get_bids(postId), to return info about all the bids on a post
