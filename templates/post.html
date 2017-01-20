@@ -36,7 +36,7 @@ $(document).ready(function(){
 		<hr>
 		<p>Starting bid: {{startingPrice}}</p>
 		<br>
-		<p>Current bid: {{lowestBidInfo["price"]}}</p>
+		<p>Current bid: {% if lowestBidId != -1 %} {{lowestBidInfo["price"]}} by <a href="/user/{{lowestBidInfo["bidder"]}}">{{lowestBidInfo["bidder"]}}</a> {% else %} No bids yet. {% endif %}</p>
 		<a href="/bid/{{postId}}" class="btn">Bid</a>
 	</div>
 </div>
