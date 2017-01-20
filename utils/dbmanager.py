@@ -173,13 +173,14 @@ def new_bid( bidder, postId, price ):
             return 1 # price bid is higher than lowest current bid
 
     else: #no bids have been made on this item
-         q = "SELECT startingPrice FROM posts WHERE postId = '%d';" % ( postId )
-         c.execute(q)
-         
-         startingPrice = c.fetchone()[0]
-         if price >= startingPrice:
+        q = "SELECT startingPrice FROM posts WHERE postId = '%d';" % ( postId )
+        c.execute(q)
+    
+        startingPrice = c.fetchall()[0]
+        #print "startingPrice: ", startingPrice
+        if price >= startingPrice:
              #print "price bid higher than starting price, returning 1"
-             return 1;
+            return 1;
     
     # at this point, a bid must have an lower price than the last bid (or startingPrice if no bids yet)
     q = """
@@ -194,5 +195,43 @@ def new_bid( bidder, postId, price ):
     return status
 
 #testing new_bid
-#new_bid( "jack", 4, 11 ) 
+#new_bid( "jack", 4, 9 ) 
 
+def get_bid( bidId ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    q = "SELECT * FROM bids WHERE bidId = %d  ;" % ( bidId )
+    c.execute( q )
+    
+    bids = c.fetchone()
+    # print "bids: ", bids
+
+    ret = {}
+    ret['bidder'] = bids[0]
+    ret['price'] = bids[3]
+    ret['date'] = bids[4]
+    return ret
+
+#testing get_bit
+#print get_bid(0)
+
+def get_bids( postId ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    q = "SELECT bidId FROM bids WHERE postId = %d ;" % ( postId  )
+    c.execute( q )
+    
+    ids = c.fetchall()
+    
+    ret = [None] * len(ids)
+    for i in range( len(ids) ):
+        ret[len(ids) - (i + 1)] = get_bid( ids[i][0] ) 
+                  
+    return ret
+
+#testing get_bids
+#print get_bids(4)
