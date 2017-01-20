@@ -36,8 +36,10 @@ $(document).ready(function(){
 <div class="row">
 	<div class="col-md-6">
 		<hr>
-		<p>Max price: ${{startingPrice}}</p>
+		<p>Starting bid: {{startingPrice}}</p>
 		<br>
+		<p>Current bid: {{lowestBidInfo["price"]}}</p>
+		<a href="/bid/{{postId}}" class="btn">Bid</a>
 	</div>
 </div>
 <div class="row">
@@ -48,4 +50,5 @@ $(document).ready(function(){
 	</div>
 </div>
 <br>
+
 {% endblock %}

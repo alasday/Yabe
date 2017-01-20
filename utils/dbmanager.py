@@ -207,9 +207,13 @@ def get_bid( bidId ):
     
     bids = c.fetchone()
     # print "bids: ", bids
+    
+    if bids == None:
+    	return None
 
     ret = {}
     ret['bidder'] = bids[0]
+    ret['id'] = bids[2]
     ret['price'] = bids[3]
     ret['date'] = bids[4]
     return ret

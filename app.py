@@ -91,7 +91,15 @@ def create():
 @app.route('/post/<int:postId>')
 #@app.route("/post/<int: postId>/<int:Period>")
 def post(postId=None):
-    return render_template("post.html", postId = postId, username = session['username'], title = dbmanager.get_post(postId)['title'], startingPrice = dbmanager.get_post(postId)['startingPrice'],period = dbmanager.get_post(postId)['period'])
+	bids = dbmanager.get_bids(postId)
+	startingPrice = dbmanager.get_post(postId)['startingPrice']
+	lowestBid = startingPrice
+	lowestBidId = -1
+	for i in bids:
+		if int(i["price"]) < lowestBid:
+			lowestBid = int(i["price"])
+			lowestBidId = i["id"]
+	return render_template("post.html", postId = postId, username = session['username'], title = dbmanager.get_post(postId)['title'], startingPrice = startingPrice,period = dbmanager.get_post(postId)['period'], lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
     
 #creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
