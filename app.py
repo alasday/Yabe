@@ -117,6 +117,19 @@ def feed():
         posts = []
         return render_template("feed.html",username=username,posts=dbmanager.get_posts(100))
 
+#creates the feed of buy request posts made by a certain
+#@app.route("/feed")
+#@app.route("/feed/<string: username>/", methods=["GET", "POST"])
+#@app.route("/user/<string: username>/", methods=["GET"]
+def userposts(username):
+    #view all posts by username
+    if "username" in session:
+        	username = session["username"]
+    else:
+        username = ""
+        posts = []
+        return render_template("user.html",username=username,posts=dbmanager.get_posts_by_username())
+
 #THIS IS A WAY I FOUND (http://flask.pocoo.org/snippets/10/) THAT ALLOWS US TO INCORPORATE AJAX INTO THE FEED
 #from urlparse import urljoin
 #from flask import request
