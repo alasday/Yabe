@@ -20,7 +20,7 @@ def loginOrRegister():
 	if 'username' in session:
 	    return render_template("index.html",username = session['username'])
 	else:
-		return render_template("index.html")
+            return render_template("index.html")
 
 #register page if you don't already have an account
 @app.route("/register")
@@ -38,7 +38,7 @@ def pay():
 	#item = dbmanager.get_item(item_id)
 	item = {"name":"test", "price":"5.00", "desc":"test_item"}
 	link = paypal.create_payment_for_buyer(0)
-	return render_template("pay.html",link = link)
+	return render_template("pay.html",link = link, username=session["username"])
 
 #handles input of the login register page
 #authenticates/creates accounts
@@ -187,7 +187,7 @@ def userposts(username):
 @app.route("/buy")
 def buy():
 	if 'username' in session:
-		return render_template("buy.html")
+		return render_template("buy.html", username=session["username"])
 	else:
 		return redirect(url_for('loginOrRegister'))
 
@@ -197,7 +197,7 @@ def profile():
 	if request.form and not accountManager.full_user_info(session['username']):
 		accountManager.set_user_info(session['username'], request.form.get("email"), request.form.get("addr1"), request.form.get("addr2"), request.form.get("city"), request.form.get("state"), request.form.get("zip"), request.form.get("fname"), request.form.get("lname"), request.form.get("phone"))
 	if 'username' in session:
-		return render_template("profile.html",user_info = accountManager.get_user(session['username']), filled_out = accountManager.full_user_info(session['username']))
+		return render_template("profile.html",user_info = accountManager.get_user(session['username']), filled_out = accountManager.full_user_info(session['username']), username=session["username"])
 	else:
 		return redirect(url_for('loginOrRegister'))
 

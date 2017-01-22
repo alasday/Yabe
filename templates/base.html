@@ -19,9 +19,10 @@
 		  <!-- Make this a block instead of using if statement-->   
 		  {% block navbar %}
 		  {% if username %}
+		  
 		  <li><a href = "/feed">Sell</a></li>
-		  <li><a href = "/upload">Upload</a></li>
-		  <li><a href = "/upload">Buy</a></li>
+		  <li><a href = "/buy">Buy</a></li>
+		  <li><a href="/profile">Profile</a></li>
 		  <li><a href="/logout">Logout</a></li>
 		  {% else %}
 		  <li><a href="/register">Register</a></li>
