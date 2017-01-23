@@ -88,9 +88,11 @@ def create():
         return redirect(url_for('post',postId = pId))
 
 #actually posts the buy request post
-@app.route('/post/<int:postId>')
+@app.route('/post/<int:postId>',methods=["POST","GET"])
 #@app.route("/post/<int: postId>/<int:Period>")
 def post(postId=None):
+	if "Submit" in request.form:
+		dbmanager.new_bid(session['username'],postId,int(request.form.get("amt")))
 	bids = dbmanager.get_bids(postId)
 	startingPrice = dbmanager.get_post(postId)['startingPrice']
 	lowestBid = startingPrice
@@ -101,6 +103,18 @@ def post(postId=None):
 			lowestBidId = i["id"]
 	return render_template("post.html", postId = postId, username = session['username'], title = dbmanager.get_post(postId)['title'], startingPrice = startingPrice,period = dbmanager.get_post(postId)['period'], lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
     
+@app.route("/bid/<int:postId>", methods=["POST","GET"])
+def bid(postId=None):
+	bids = dbmanager.get_bids(postId)
+	startingPrice = dbmanager.get_post(postId)['startingPrice']
+	lowestBid = startingPrice
+	lowestBidId = -1
+	for i in bids:
+		if int(i["price"]) < lowestBid:
+			lowestBid = int(i["price"])
+			lowestBidId = i["id"]
+	return render_template("bid.html", postId = postId, username = session['username'], startingPrice = startingPrice, lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
+
 #creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
 def feed():
@@ -115,7 +129,7 @@ def feed():
         else:
         	username = ""
         posts = []
-        return render_template("feed.html",username=username,posts=dbmanager.get_posts(100))
+    return render_template("feed.html",username=username,posts=dbmanager.get_posts(100))
 
 #creates the feed of buy request posts made by a certain
 #@app.route("/feed")

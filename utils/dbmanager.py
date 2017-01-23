@@ -99,7 +99,7 @@ def get_posts( number ):
     c.execute( q )
     
     ids = c.fetchall()
-    
+     
     start = len(ids) - number
     if start > 0:
         ret = [None] * (number)
@@ -157,9 +157,9 @@ def new_bid( bidder, postId, price ):
         bidId = max(IDS)[0] + 1
     else:    
         bidId = 0 #the first bid
-    
+        
     date = time.time()
-
+    
     q = "SELECT price FROM bids WHERE postId = '%d';" % ( postId )
     c.execute(q)
 
