@@ -115,7 +115,7 @@ def feed():
         else:
         	username = ""
         posts = []
-        return render_template("feed.html",username=username,posts=dbmanager.get_posts(100))
+    return render_template("feed.html",username=username,posts=dbmanager.get_posts(100))
 
 #creates the feed of buy request posts made by a certain
 #@app.route("/feed")
