@@ -120,15 +120,11 @@ def feed():
 #creates the feed of buy request posts made by a certain
 #@app.route("/feed")
 #@app.route("/feed/<string: username>/", methods=["GET", "POST"])
-#@app.route("/user/<string: username>/", methods=["GET"]
-def userposts(username):
+@app.route("/user/<username>/")
+def userposts(username=None):
     #view all posts by username
-    if "username" in session:
-        	username = session["username"]
-    else:
-        username = ""
-        posts = []
-        return render_template("user.html",username=username,posts=dbmanager.get_posts_by_username())
+    posts = []
+    return render_template("user.html",username=username,posts=dbmanager.get_posts_by_username(username))
 
 #THIS IS A WAY I FOUND (http://flask.pocoo.org/snippets/10/) THAT ALLOWS US TO INCORPORATE AJAX INTO THE FEED
 #from urlparse import urljoin
