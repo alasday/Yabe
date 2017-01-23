@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<script src="/static/js/lazyload.js"></script>
+<title>Caindid Images</title>
+{% endblock %}
+
+{% block navbar %}
+{{ super() }}
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+{% for post in posts %}
+	<div class="col-md-3">
+		<h5>{{post["title"]}}</h5>
+		<a href="/user/{{post['owner']}}">{{post["owner"]}}</a>:
+		<br><p>Max price: ${{post['startingPrice']}}</p>
+		<br><p>Time left: {{post['period']}}</p>
+	</div>
+{% endfor %}
+</div>
+
+{% endblock %}
+ 
