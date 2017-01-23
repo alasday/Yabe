@@ -196,6 +196,9 @@ noahF -- 2017-01-19 13:20
 noahF -- 2017-01-19 17:15
 	-Finished quick feed page, should work once Jack's function is finished
 
+chloeD -- 2017-01-19 19:30
+	- finished post (which worked on in class as well)
+
 jackS -- 2017-01-19 23:59
 - wrote get_posts
 - wrote get_posts_by_username
@@ -205,3 +208,15 @@ jackS -- 2017-01-19 23:59
 jackS -- 2017-01-20 13:56
 - wrote get_bid(bidId), to return info about one bid
 - wrote get_bids(postId), to return info about all the bids on a post
+
+chloeD -- 2017-01-20 14:05
+	- started/worked on user feed
+	
+============== Sunday, January 22nd ===============
+chloeD -- 2017-01-22 16:00
+	- workedon user-- got stuck
+
+============== Monday, January 23rd ===============
+chloeD -- 2017-01-23 14:05
+	- user completed
+	- almost cried
