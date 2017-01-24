@@ -140,6 +140,35 @@ def userposts(username=None):
     posts = []
     return render_template("user.html",username=username,posts=dbmanager.get_posts_by_username(username))
 
+#ajax code by mr brown just to show how ajax is done
+#bc i didnt totally get the way to do it and its a
+#lot simpler than the other thing i linked... not
+#entirely sure how to do it but we can try and bounce
+#ideas off each other
+#from flask import Flask,request,url_for,redirect,render_template
+#import time
+#import json
+#
+#
+#app=Flask(__name__)
+#
+#@app.route("/")
+#def index():
+#    return render_template("index.html")
+#
+#@app.route("/upcase")
+#def upcase():
+#    data = request.args.get("text")
+#    print data
+#    
+#    time.sleep(5)
+#    
+#    result = {'original':data,
+#              'result':data.upper()
+#    }
+#    
+#    return json.dumps(result)
+
 #THIS IS A WAY I FOUND (http://flask.pocoo.org/snippets/10/) THAT ALLOWS US TO INCORPORATE AJAX INTO THE FEED
 #from urlparse import urljoin
 #from flask import request
