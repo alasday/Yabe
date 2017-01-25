@@ -25,8 +25,8 @@ def new_post( owner, title, startingPrice, period ):
     expires = date + secondsPerDay * period
     
     q = """
-    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f');
-    """ % ( owner, postId, title, startingPrice, date, expires )
+    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f', '%s');
+    """ % ( owner, postId, title, startingPrice, date, expires, "active" )
 
     c.execute( q )
 
@@ -61,7 +61,8 @@ def get_post( postId ):
     dict['postId'] = lit[1]
     dict["title"] = lit[2]
     dict["startingPrice"] = lit[3]
-
+    dict["active"] = lit[6]
+    
     expires = lit[5]
     currentDate = time.time()
     periodSeconds = expires - currentDate
@@ -95,7 +96,7 @@ def get_posts( number ):
 
     now = time.time()
     
-    q = "SELECT postId FROM posts WHERE expires > %d;" % ( now )
+    q = "SELECT postId FROM posts WHERE expires > %d AND active == 'active';" % ( now )
     c.execute( q )
     
     ids = c.fetchall()
@@ -239,3 +240,37 @@ def get_bids( postId ):
 
 #testing get_bids
 #print get_bids(4)
+
+def log_sale( postId, bidId ):
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    # finding the next postId
+    q = "SELECT saleId FROM sales"
+    c.execute(q)
+
+    IDS = c.fetchall()
+
+    if IDS: # if list is not empty, there exists ids to take the max of
+        saleId = max(IDS)[0] + 1
+    else: 
+        saleId = 0 #first post
+
+    date = time.time()
+
+    q = """
+    INSERT INTO sales VALUES('%d', '%d', '%d', '%f');
+    """ % ( postId, bidId, saleId, date)
+    c.execute( q )
+
+    q = "UPDATE posts SET active = 'bought' WHERE postId = %d;" % (postId)
+    c.execute( q )
+
+    db.commit()
+    db.close()
+    
+    return saleId
+
+#testing log_sale
+#log_sale(0,2)
