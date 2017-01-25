@@ -101,7 +101,7 @@ def post(postId=None):
 		if int(i["price"]) < lowestBid:
 			lowestBid = int(i["price"])
 			lowestBidId = i["id"]
-	return render_template("post.html", postId = postId, username = session['username'], title = dbmanager.get_post(postId)['title'], startingPrice = startingPrice,period = dbmanager.get_post(postId)['period'], lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
+	return render_template("post.html", username = session['username'], post = dbmanager.get_post(postId), lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
     
 @app.route("/bid/<int:postId>", methods=["POST","GET"])
 def bid(postId=None):

@@ -18,9 +18,9 @@
       <p>Posted by: <a class="card-link" href="/user/{{post['owner']}}">{{post["owner"]}}</a></p>
       <p>Max price: ${{post['startingPrice']}}</p>
       <p>Time left: {{post['period']}}</p>
-      {% if post['completed'] == 0 %}
+      {% if post['active'] == 0 %}
       <a href="/bid/{{post['postId']}}" class="btn btn-primary">Make a Bid</a>
-      {% elif post['completed'] == 1 %}
+      {% elif post['active'] == 1 %}
       <a href="#" class="btn btn-success">SOLD</a>
       {% else %}
       <a href="#" class="btn btn-warning">ENDED</a>
