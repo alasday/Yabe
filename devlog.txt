@@ -220,3 +220,11 @@ chloeD -- 2017-01-22 16:00
 chloeD -- 2017-01-23 14:05
 	- user completed
 	- almost cried
+
+jackS -- 2017-01-23 14:07
+- fixed bugs in dbmanager
+
+============== Wednesday, January 25th ===============
+jackS -- 2017-01-25 14:10
+- wrote function log_sale, to ... log sales, and change the active column in posts table to bought
+- added the column active to posts to indicate whether a listing is still active or not
