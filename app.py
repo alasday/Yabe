@@ -29,7 +29,7 @@ def unpaid():
     if not "status" in session:
         return redirect("/feed")
     sale_link = paypal.create_payment_for_buyer(int(session["status"]))
-    return render_template("unpaid.html",sale_link = sale_link)
+    return render_template("unpaid.html",sale_link = sale_link, username = session["username"])
 
 @app.route("/paid")
 def paid():
