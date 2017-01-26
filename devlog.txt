@@ -233,6 +233,10 @@ jackS -- 2017-01-23 14:07
 
 asherL -- 2017-01-23 14:04
 -worked with sebastian on front end, fixed and then forgot to push an image thing
+
+noahF -- 2017-01-23 13:20
+-Made bidding page, added routes for bidding
+
 ============== Wednesday, January 25th ===============
 jackS -- 2017-01-25 14:10
 - wrote function log_sale, to ... log sales, and change the active column in posts table to bought
@@ -241,13 +245,25 @@ jackS -- 2017-01-25 14:10
 jackS -- 2017-01-25 18:05
 - wrote funciton lowest_bid to return the lowest bid on a post
 
+noahF -- 2017-01-25 20:00
+-Began payment stuff
+-Fixed weird indentations
+-Completed payments
+
 ============== Thursday, January 26th ===============
 jackS -- 2017-01-26 1:10
 - wrote the readme
-asherL -- 2017-01-27 1:18
+asherL -- 2017-01-26 1:18
 -debugged issue with lowestBid with noah
 -worked on AJAX with sebastian 
 -worked on images with sebastian
 -created video
 -updated design doc
  
+noahF -- 2017-01-26 01:20
+-Finished payout from facilitator account to actual seller
+-Added keys
+-Various bug fixes & flask routes
+-Made a script for Asher to follow when making the video and a file with issues to be completed before the video
+-Created an email-er that emails the seller with the buyer's shipping info so the seller can ship to them
+-More various bug fixes
