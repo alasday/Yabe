@@ -67,7 +67,7 @@ def get_post( postId ):
     currentDate = time.time()
     periodSeconds = expires - currentDate
     secondsPerDay = 86400
-n    secondsPerHour = 3600
+    secondsPerHour = 3600
     
     if periodSeconds < 0:
         period = "This listing has expired"
@@ -280,9 +280,20 @@ def end_post( postId ):
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()  #facilitate db ops
 
-    q = "UPDATE posts SET active = 2 WHERE postId = %d;" % (postId)
+    q = "SELECT bidder FROM bids WHERE postId = %d;" % (postId)
+    c.execute( q )
+
+    bids = c.fetchone()
+    if bids:
+        q = "UPDATE posts SET active = 1 WHERE postId = %d;" % (postId)
+    else:
+        q = "UPDATE posts SET active = 2 WHERE postId = %d;" % (postId)
+
     c.execute( q )
     
     db.commit()
     db.close()
     return 2
+
+#testing end_post
+#end_post(10)
