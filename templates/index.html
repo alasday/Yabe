@@ -11,32 +11,10 @@
 
 {% block body %}
 
-<div class="container">
-  {% set i = 0 %}
-  {% for image in images %}
-  <div class="row">
-  <div class="col-sm-4">
-  <h4>{{ image[1] }}</h4>
-	<a href="{{ url_for('static', filename = 'images' + image[0])}}" data-lightbox="image" data-title="{{tagStrings[i]}}">
-	{% set i = i + 1 %}
-	  <img class="index lazy" src="/static/js/ajax-loader.gif" data-original="{{ url_for('static', filename = 'images' + image[0]) }}" width="300" height="300"></img></a>
-	<br>
-	posted by {{ image[2] }} <br><br><br><br>
-  </div>
-  <div class="col-sm-4 offset-sm-4">
-    <br><br>
-    <iframe
-  width="400"
-  height="300"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDUPAj0czfKLMWzZyO0brrORVvi4YH1f30&q={{ image[3] }},{{ image[4] }}">
-</iframe>
-  </div>
-  </div>
-
-    {% endfor %}
-  
-</div>
+<h4>Welcome to Yabe</h4>
+<p>Yabe is a platform that is similar to Ebay, but different in one key way: the buyers post what they want instead of the sellers posting what they have, and the sellers make lower and lower bids instead of the buyers making higher and higher bids.</p>
+<a href="/login" class="btn btn-primary">Login</a>
+<a href="/register" class="btn btn-secondary">Register</a>
 
 {% endblock %}
  
