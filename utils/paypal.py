@@ -2,16 +2,18 @@ import paypalrestsdk
 from flask import request
 import urlparse
 import dbmanager
+import random
+import string
 
 paypalrestsdk.configure({
 	"mode": "sandbox",
-	"client_id": "no_id_for_you",
-	"client_secret": "no_secret_for_you"
+	"client_id": "",
+	"client_secret": ""
 })
 	
 def create_payment_for_buyer(item_id):
 	item = dbmanager.get_post(item_id)
-        price = dbmanager.lowest_bid(item_id)
+        price = dbmanager.lowest_bid(item_id)["price"]
 	
 	payment = paypalrestsdk.Payment({
 		"intent":"sale",
@@ -46,7 +48,8 @@ def create_payment_for_buyer(item_id):
 				redirect_url = str(link.href)
 				return redirect_url
 	else:
-		return "Error while creating payment:"+payment.error
+		print payment.error
+                return "Error"
 
 def execute_payment_for_buyer():
 	parsed = urlparse.urlparse(request.url)
@@ -60,6 +63,39 @@ def execute_payment_for_buyer():
 	else:
                 print payment.error
 		return False 
+
+def create_payment_to_seller(email,item_id):
+	item = dbmanager.get_post(item_id)
+        price = dbmanager.lowest_bid(item_id)["price"]
+        
+	payout = paypalrestsdk.Payout({
+                "sender_batch_header": {
+                        "sender_batch_id": sender_batch_id,
+                        "email_subject": "You have a payment"
+                },
+                "items": [
+                        {
+                                "recipient_type": "EMAIL",
+                                "amount": {
+                                        "value": price,
+                                        "currency": "USD"
+                                },
+                                "receiver": email,
+                                "note": "Payout for Yabe item!",
+                                "sender_item_id": str(item_id)
+                        }
+                ]
+        })
 	
+	if payout.create():
+                print("payout[%s] created successfully" %(payout.batch_header.payout_batch_id))
+	else:
+		print payment.error
+                return "Error"
+
+sender_batch_id = ''.join(
+    random.choice(string.ascii_uppercase) for i in range(12))
+
+
 #EXAMPLE/TEST
 #create_payment_for_buyer(0)

@@ -34,6 +34,12 @@ def unpaid():
 @app.route("/paid")
 def paid():
     if paypal.execute_payment_for_buyer():
+        postId = int(session["status"])
+        lowest_bid = lowest_bid(postId)
+        log_sale(postId,lowest_bid["id"])
+        email = accountManager.get_user(lowest_bid["bidder"])
+        print email
+        payout_link = paypal.create_payment_to_seller(email,postId)
         session.pop("status")
         return redirect("/feed")
     return render_template("unpaid.html")
