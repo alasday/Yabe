@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+        {% block head %}
+        <title>Yabe</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <!--<link rel="stylesheet" href="../static/css/app.css">-->
+        {% endblock %}
+    </head>
+
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-inverse bg-inverse">
+      <div class="container">
+        <a class="navbar-brand" href="/feed">Yabe</a>
+	<div id="navbarNav" class="navbar-collapse collapse">
+          <ul class="navbar-nav">
+	    <!-- Make this a block instead of using if statement-->   
+	    {% block navbar %}
+	    {% if username %}
+	    
+	    <li class="nav-item"><a class="nav-link" href="/feed">Feed</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	    {% else %}
+	    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+	  {% endif %}
+	    {% endblock %}
+          </ul>
+	</div>
+      </div>
+    </nav>
+
+    <body>
+        <div class="container">
+            {% if message %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="alert alert-{{category}}">
+                      {{message}}
+		      <a href="/register">{{add_mess}}</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+	    <br><br>
+            {% block body %}
+	    
+            {% endblock %}
+        </div>
+    </body>
+</html>
