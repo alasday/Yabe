@@ -25,8 +25,8 @@ def new_post( owner, title, startingPrice, period ):
     expires = date + secondsPerDay * period
     
     q = """
-    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f', '%s');
-    """ % ( owner, postId, title, startingPrice, date, expires, "active" )
+    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f', '%d');
+    """ % ( owner, postId, title, startingPrice, date, expires, 0 )
 
     c.execute( q )
 
@@ -96,7 +96,7 @@ def get_posts( number ):
 
     now = time.time()
     
-    q = "SELECT postId FROM posts WHERE expires > %d AND active == 'active';" % ( now )
+    q = "SELECT postId FROM posts WHERE expires > %d AND active == 0;" % ( now )
     c.execute( q )
     
     ids = c.fetchall()
@@ -264,7 +264,7 @@ def log_sale( postId, bidId ):
     """ % ( postId, bidId, saleId, date)
     c.execute( q )
 
-    q = "UPDATE posts SET active = 'bought' WHERE postId = %d;" % (postId)
+    q = "UPDATE posts SET active = 1 WHERE postId = %d;" % (postId)
     c.execute( q )
 
     db.commit()
