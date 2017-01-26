@@ -1,5 +1,16 @@
 import sqlite3, time
 
+def update_posts():
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    c.execute("SELECT * FROM posts")
+    l = c.fetchall()
+
+    for row in l:
+        if time.time() > float(row[5]):
+            end_post(int(row[1]))
 
 # new_post() -- method for creating a new post
 # @returns postId
@@ -280,9 +291,20 @@ def end_post( postId ):
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()  #facilitate db ops
 
-    q = "UPDATE posts SET active = 2 WHERE postId = %d;" % (postId)
+    q = "SELECT bidder FROM bids WHERE postId = %d;" % (postId)
+    c.execute( q )
+
+    bids = c.fetchone()
+    if bids:
+        q = "UPDATE posts SET active = 1 WHERE postId = %d;" % (postId)
+    else:
+        q = "UPDATE posts SET active = 2 WHERE postId = %d;" % (postId)
+
     c.execute( q )
     
     db.commit()
     db.close()
     return 2
+
+#testing end_post
+#end_post(10)
