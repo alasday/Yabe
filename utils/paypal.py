@@ -10,10 +10,10 @@ def get_keys(string):
         lineNum = 0
         for line in f:
                 if lineNum == 0 and string == "c_id":
-                        print "c_id",line[:-1]
                         return line[:-1]
                 if lineNum == 1 and string == "c_sec":
-                        print "c_secret",line[:-1]
+                        return line[:-1]
+                if lineNum == 2 and string == "email_pw":
                         return line[:-1]
                 lineNum+=1
 

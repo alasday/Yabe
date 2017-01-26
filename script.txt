@@ -1,0 +1,64 @@
+Explain stuff as you do it
+
+BEFORE STARTING VIDEO:
+-Create 3 test accounts:
+1) test_buyer_0 / password
+2) test_seller_0 / password
+3) test_seller_1 / password
+
+-Create 3 test listings from test_buyer_1:
+1) test_listing_0 / $100 / test_description / 1 day
+2) test_listing_1 / $500 / test_description / 2 days
+3) test_listing_2 / $1000 / test_description / 3 days
+
+-Open 3 private browsing sessions in three different workspaces
+
+AFTER STARTING VIDEO
+-BRIEF EXPLANATION OF WHAT OUR PROJECT IS:
+       -"Reverse eBay; you post what you want to buy and the maximum price you're willing to pay, then sellers who own that item will post what price they're willing to sell to you at, undercutting each other until the listing ends. The person with the lowest 'bid' will be the one to sell it to you."
+
+-Log into test_buyer_0
+-Show the posts and make a new post:
+4) test_listing_3 / $200 / test_description / 4 days
+-Go to /profile and fill out the info with whatever you want (just make it seem legit, like Asher Lasday 345 Chambers Street etc etc etc - this will be sent in an email to the seller)
+
+-Log into test_seller_0 in a different window
+-Refresh the page and see the new post
+-Click on the new post
+
+-Log into test_seller_1 in a different window
+-Refresh the page and see the new post
+-Click on the new post (/post/3)
+-Make a bid for $190
+
+-Go back to test_seller_0 and note that AJAX has now updated the bid to $190 without refreshing the page
+-Make a bid for $180
+
+-Go to /profile, note that the seller must have their info filled out for the payment to go through properly
+-Fill out all info with whatever you want EXCEPT make sure email is yabeapplication@gmail.com (email w/ shipping info will be sent here)
+
+-Go to /enditem/3 to manually end the item, explain that this is only for debugging purposes and will be turned off for the live website
+
+-You will be redirected to /feed, note that the listing has now disappeared
+
+-Return to test_buyer_0, /logout, log back in (note that this is currently the only way your listing will update, but it doesn't mean much because most people don't leave a window open for days at a time)
+-Note that you are immediately redirected to /unpaid because now that your listing has ended, you must pay for it before doing anything else (this is how we prevent people from posting stuff and not following through!)
+-You will be redirected to a sandbox paypal link, log in with yabeapplication-buyer-1@gmail.com // thelordnecketh7
+-Pay, then you will be redirected to /paid which will redirect you to /feed
+
+-Everything to show on the website itself is done, however we want to show that the payment actually happened
+-Go to sandbox.paypal.com and log in to yabeapplication-facilitator@gmail.com // testfac7
+-Note that there was a payment for $180 in, and another payment for $180 out
+      -Note that the payment for $180 in came from the buyer, and then our script automatically pays it out to the seller assuming their email is properly filled out
+
+-Now, we want to go to the gmail account to show that the seller received an email with the buyer's info, so go to mail.google.com
+-Log in with yabeapplication@gmail.com // (password is in the slack and in the key file)
+-Note the email with the shipping info
+-"Yay! Those are all the features our website has. A quick recap of what you can do on Yabe:
+       -Create a buy post as a buyer
+       -Make bids as a seller
+       -Pay for your item as a buyer when your item ends (if there are bids)
+       -Receive instant payout as a seller when you are the final bid on an item
+Thank you for checking out Yabe."
+
+or some bs like that^
