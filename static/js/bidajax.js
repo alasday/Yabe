@@ -1,4 +1,4 @@
-$(document).ready(function() {
+//$(document).ready(function(e) {
 	function reload() {
 	    $.ajax({
 		    url: "/bidajax",
@@ -10,5 +10,4 @@ $(document).ready(function() {
 	    });
 	}
 	setInterval(reload, 2000);
-});
-		   
+//});

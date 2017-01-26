@@ -18,7 +18,7 @@ c = db.cursor()    #facilitate db ops
 q = "CREATE TABLE users (username TEXT, password TEXT, userId INTEGER, email TEXT , addr1 TEXT, addr2 TEXT, addrCity TEXT, addrState TEXT, addrZip TEXT, nameF TEXT, nameL TEXT, phone TEXT)"
 c.execute(q)
 
-q="CREATE TABLE posts (owner TEXT, postId INTEGER, title TEXT, startingPrice INTEGER, date FLOAT, expires FLOAT, active INTEGER)"
+q="CREATE TABLE posts (owner TEXT, postId INTEGER, title TEXT, startingPrice INTEGER, date FLOAT, expires FLOAT, active INTEGER, imageLink TEXT, description TEXT)"
 c.execute(q)
 
 q="CREATE TABLE bids (bidder TEXT, postId INTEGER, bidId INTEGER, price INTEGER, date FLOAT)"

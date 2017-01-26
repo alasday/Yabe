@@ -4,6 +4,15 @@ import urlparse
 import dbmanager
 import random
 import string
+import smtplib
+
+#sends an email from the no-reply account
+def send_mail(subject, body, email):
+	smtpObj = smtplib.SMTP("smtp.gmail.com",587)
+	smtpObj.ehlo()
+	smtpObj.starttls()
+	smtpObj.login('yabeapplication@gmail.com',get_keys("email_pw"))
+	smtpObj.sendmail('yabeapplication@gmail.com',email,'Subject: %s\n%s'%(subject,body))
 
 def get_keys(string):
         f = open("keys.txt","r")
@@ -89,7 +98,7 @@ def create_payment_to_seller(email,item_id):
                         {
                                 "recipient_type": "EMAIL",
                                 "amount": {
-                                        "value": price*0.95, #account for fees
+                                        "value": int(price*0.95), #account for fees
                                         "currency": "USD"
                                 },
                                 "receiver": email,

@@ -2,7 +2,7 @@
 
 {% block head %}
 {{ super() }}
-<title>Caindid Images</title>
+<title>Yabe - Feed</title>
 {% endblock %}
 
 {% block navbar %}
@@ -14,6 +14,7 @@
 <div class="card-columns">
   {% for post in posts %}
   <div class="card" style="width: 20rem;">
+    <img class="card-img-top" src="{{post['imageLink']}}" style="width: 19.9rem;">
     <div class="card-block">
       <h5 class="card-title"><a class="card-link" href="/post/{{post['postId'] }}">{{post["title"]}}</a></h5>
       <p>Posted by: <a class="card-link" href="/user/{{post['owner']}}">{{post["owner"]}}</a></p>

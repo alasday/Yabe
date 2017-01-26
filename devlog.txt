@@ -128,7 +128,7 @@ chloeD -- 2017-01-11 23:45
 jackS -- 2017-01-12 22:28
 - wrote function new_bid in utils/dbmanager.py to add a new bid to a given post and log it in the bids table in the db
 
-============== Friday, January 12th ===============
+============== Friday, January 13th ===============
 
 noahF -- 2017-01-13 13:20
 	-Working on profile page
@@ -140,6 +140,9 @@ jackS -- 2017-01-13 13:15
 chloeD -- 2017-01-13 14:05
 	- wrote a potential fask feed/post but commented it because it was the end of the period and I didnt have time to test 
 	it much
+asherL -- 2017-01-13 13:14
+       -tried to figure out how to get paypal api working on the school's machines
+       -after reading the docs and doing a bit of research, found that the machines needed to have a formatting comand run, told Mr. Brown
 
 ============== Tuesday, January 17th ===============
 
@@ -187,7 +190,11 @@ chloeD -- 2017-01-18 23:42
 
 noahF -- 2017-01-18 18:30
 	-Finished profile page entirely, works flawlessly (I believe)
-	
+
+asherL -- 2017-01-18 18:43
+       -realized I was incompetent and forgot to ask Mr. Brown to format the machines via email so paypal still didnt work
+       -asked Mr. Brown to reformat the machines
+       -installed paypal on my machine because Mr. Brown reformatted it	
 ============== Thursday, January 19th ===============
 noahF -- 2017-01-19 13:20
 	-Made a quick individual post page
@@ -224,7 +231,44 @@ chloeD -- 2017-01-23 14:05
 jackS -- 2017-01-23 14:07
 - fixed bugs in dbmanager
 
+asherL -- 2017-01-23 14:04
+-worked with sebastian on front end, fixed and then forgot to push an image thing
+
+noahF -- 2017-01-23 13:20
+-Made bidding page, added routes for bidding
+
 ============== Wednesday, January 25th ===============
 jackS -- 2017-01-25 14:10
 - wrote function log_sale, to ... log sales, and change the active column in posts table to bought
 - added the column active to posts to indicate whether a listing is still active or not
+
+jackS -- 2017-01-25 18:05
+- wrote funciton lowest_bid to return the lowest bid on a post
+
+noahF -- 2017-01-25 20:00
+-Began payment stuff
+-Fixed weird indentations
+-Completed payments
+
+============== Thursday, January 26th ===============
+jackS -- 2017-01-26 1:10
+- wrote the readme
+asherL -- 2017-01-26 1:18
+-debugged issue with lowestBid with noah
+-worked on AJAX with sebastian 
+-worked on images with sebastian
+-created video
+-updated design doc
+ 
+noahF -- 2017-01-26 01:20
+-Finished payout from facilitator account to actual seller
+-Added keys
+-Various bug fixes & flask routes
+-Made a script for Asher to follow when making the video and a file with issues to be completed before the video
+-Created an email-er that emails the seller with the buyer's shipping info so the seller can ship to them
+-More various bug fixes
+
+chloeD -- 2017-01-26 01:48
+- running the code
+-testing the code
+- trying to find different bugs and fixing them

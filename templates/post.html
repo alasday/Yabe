@@ -28,14 +28,15 @@ $(document).ready(function(){
   <div class="col-md-6">
     <small>Posted by: <a href="/user/{{username}}">{{username}}</a></small>
     <br>
+    <img src="{{post['imageLink']}}">
+
   </div>
 </div>
 <div class="row">
   <div class="col-md-6">
+    <small>Product Description:</small>
+    <p>{{ post['description'] }}</p>
     <hr>
-    <p>Starting bid: ${{post['startingPrice']}}</p>
-    <br>
-    <p>Current bid: {% if lowestBidId != -1 %} {{lowestBidInfo["price"]}} by <a href="/user/{{lowestBidInfo['bidder']}}">{{lowestBidInfo["bidder"]}}</a> {% else %} No bids yet. {% endif %}</p>
     {% if post['active'] == 0 %}
     <a href="/bid/{{post['postId']}}" class="btn btn-primary">Make a Bid</a>
     {% elif post['active'] == 1 %}
@@ -43,6 +44,9 @@ $(document).ready(function(){
     {% else %}
     <a href="#" class="btn btn-danger">ENDED</a>
     {% endif %}
+    <br><br>
+    <p>Starting bid: ${{post['startingPrice']}}</p>
+    <p>Current bid: {% if lowestBidId != -1 %} {{lowestBidInfo["price"]}} by <a href="/user/{{lowestBidInfo['bidder']}}">{{lowestBidInfo["bidder"]}}</a> {% else %} No bids yet. {% endif %}</p>
   </div>
 </div>
 <div class="row">

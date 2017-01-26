@@ -19,14 +19,14 @@
 {% endfor %}
 </div>
 <form action="/post/{{postId}}" method="POST">
-	<div class="row">
-		<div class="col-md-3">
-			<input id="updatingElement" type="number" name="amt" placeholder="100" min=1 max={{lowestBidInfo["price"]}} required></input>
-		</div>
-		<div class="col-md-3">
-			<input type="submit" name="Submit"></input>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-3">
+      <input id="updatingElement" type="number" name="amt" placeholder="100" min=1 max={{lowestBid}} required></input>
+    </div>
+    <div class="col-md-3">
+      <input type="submit" name="Submit"></input>
+    </div>
+  </div>
 </form>
 <script src="../static/js/bidajax.js"></script>
 {% endblock %}

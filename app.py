@@ -17,6 +17,8 @@ f.close()
 #the default page is allows you to choose to login or register
 @app.route("/")
 def loginOrRegister():
+    if "status" in session:
+        session.pop("status")
     if 'username' in session:
         return render_template("index.html",username = session['username'])
     else:
@@ -36,7 +38,19 @@ def paid():
         lowest_bid = dbmanager.lowest_bid(postId)
         dbmanager.log_sale(postId,lowest_bid["id"])
         email = accountManager.get_user(lowest_bid["bidder"])["email"]
-        print email
+        buyer_info = accountManager.get_user(session["username"])
+        b_email = buyer_info["email"]
+        b_addr1 = buyer_info["addr1"]
+        b_addr2 = buyer_info["addr2"]
+        b_city = buyer_info["addrCity"]
+        b_state = buyer_info["addrState"]
+        b_zip = buyer_info["addrZip"]
+        b_nameF = buyer_info["nameF"]
+        b_nameL = buyer_info["nameL"]
+        b_phone = buyer_info["phone"]
+        b_user = buyer_info["user"]
+        body = "Hey! You recently sold an item on Yabe.com. Please ship the item to your buyer.\nHere's the shipping info: \n\n%s\n%s %s\n%s\n%s\n%s, %s %s\n%s\n\nIf you need to contact the buyer, please email them at %s, and if there are issues with your sale, please email yabeapplication@gmail.com.\nThank you for your business at Yabe.com!"%(b_user,b_nameF,b_nameL,b_addr1,b_addr2,b_city,b_state,b_zip,b_phone,b_email)
+        paypal.send_mail("Shipping info for your buyer @ Yabe",body,email)
         payout_link = paypal.create_payment_to_seller(email,postId)
         session.pop("status")
         return redirect("/feed")
@@ -120,7 +134,7 @@ def create():
     if "status" in session:
         return redirect("/unpaid")
         #get field stuff
-    pId = dbmanager.new_post(session['username'], request.form["title"], int(request.form["startingPrice"]),int(request.form["period"]))
+    pId = dbmanager.new_post(session['username'], request.form["title"], int(request.form["startingPrice"]),int(request.form["period"]), request.form["imageLink"], request.form["description"])
     #return redirect('/post/<int: postId>')
     return redirect(url_for('post',postId = pId))
 
@@ -153,7 +167,7 @@ def bid(postId=None):
         if int(i["price"]) < lowestBid:
             lowestBid = int(i["price"])
             lowestBidId = i["id"]
-    return render_template("bid.html", postId = postId, username = dbmanager.get_post(postId)["owner"], startingPrice = startingPrice, lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
+    return render_template("bid.html", postId = postId, username = dbmanager.get_post(postId)["owner"], startingPrice = startingPrice, lowestBid = lowestBid, lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
 
 #creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
@@ -281,10 +295,11 @@ def buy():
     else:
         return redirect(url_for('loginOrRegister'))
 
-@app.route("/bidajax")
+@app.route("/bidajax/<int:postId>", methods=["POST","GET"])
 def bidajax():
+    #print(lmao)
     htmlstr = ""
-    allBids = dbmanager.get_bids()
+    allBids = dbmanager.get_bids(postId)
     for bid in bids:
         htmlstr += "<p>$" + bid["price"] + " - " + bid["bidder"] + "</p>"
     return htmlstr

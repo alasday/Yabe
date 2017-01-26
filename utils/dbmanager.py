@@ -14,7 +14,7 @@ def update_posts():
 
 # new_post() -- method for creating a new post
 # @returns postId
-def new_post( owner, title, startingPrice, period ):
+def new_post( owner, title, startingPrice, period, imageLink, description ):
     f="database.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()  #facilitate db ops
@@ -33,11 +33,10 @@ def new_post( owner, title, startingPrice, period ):
     date = time.time()
 
     secondsPerDay = 86400
+    period = int(period)
     expires = date + secondsPerDay * period
     
-    q = """
-    INSERT INTO posts VALUES('%s', '%d', '%s', '%d', '%f', '%f', '%d');
-    """ % ( owner, postId, title, startingPrice, date, expires, 0 )
+    q = 'INSERT INTO posts VALUES("%s", "%d", "%s", "%d", "%f", "%f", "%d", "%s", "%s");' % ( owner, postId, title, startingPrice, date, expires, 0, imageLink, description )
 
     c.execute( q )
 
@@ -73,7 +72,8 @@ def get_post( postId ):
     dict["title"] = lit[2]
     dict["startingPrice"] = lit[3]
     dict["active"] = lit[6]
-    
+    dict["imageLink"] = lit[7]
+    dict["description"] = lit[8]
     expires = lit[5]
     currentDate = time.time()
     periodSeconds = expires - currentDate
