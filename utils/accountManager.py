@@ -13,7 +13,7 @@ def unpaidInvoice(user):
     f = "database.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute("SELECT * FROM posts WHERE owner='%s' and active='1'" %(user))
+    c.execute("SELECT * FROM posts WHERE owner='%s' and active=1" %(user))
     l = c.fetchall()
     if l == None:
         return -1
