@@ -55,9 +55,13 @@ def authOrCreate():
         elif statusNum == 1:
             session["username"]=username
             loginStatus = username + " logged in"
-            return redirect( "/feed" )
+            return redirect( "/feed")
         elif statusNum == 2:
             loginStatus = "wrong password"
+        else:
+                session["username"] = username
+                session["status"] = statusNum
+                return redirect("/feed")
 
 		#to be changed
         return render_template("loginOrReg.html",status=loginStatus)
@@ -129,7 +133,11 @@ def feed():
         else:
         	username = ""
         posts = []
-    return render_template("feed.html",username=username,posts=dbmanager.get_posts(100))
+        num = -1
+        if "status" in session:
+                num = session["status"]
+                
+    return render_template("feed.html",username=username,posts=dbmanager.get_posts(100),num = num)
 
 #creates the feed of buy request posts made by a certain
 #@app.route("/feed")

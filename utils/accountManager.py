@@ -8,6 +8,20 @@ import sqlite3   #enable control of an sqlite database
 
 from hashlib import sha1
 
+def unpaidInvoice(user):
+    f = "database.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute("SELECT * FROM posts WHERE owner='%s'" %(user))
+    l = c.fetchall()
+    if l == None:
+        return -1
+    else:
+        for row in l:
+            if row[6] == '1':
+                return row[1]
+    return -1
+
 #authenticate user returns true if authentication worked
 def authenticate(user,password):
 
@@ -31,11 +45,13 @@ def authenticate(user,password):
         isLogin = True
         messageNumber = 1
         loginStatusMessage = "login info correct"
+        if unpaidInvoice(user) != -1:
+            massageNumber = unpaidInvoice(user)
     else:
         isLogin = False
         messageNumber = 2
         loginStatusMessage = "wrong password"
-
+        
     db.commit() #save changes
     db.close()  #close database
     return messageNumber
