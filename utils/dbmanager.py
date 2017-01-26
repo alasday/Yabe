@@ -252,6 +252,20 @@ def get_bids( postId ):
 #testing get_bids
 #print get_bids(4)
 
+def lowest_bid( postId ):
+    bids = get_bids( postId )
+    startingPrice = get_post(postId)['startingPrice']
+    lowestBid = startingPrice
+    lowestBidDict = {}
+    for bid in bids:
+        if int(bid["price"]) < lowestBid:
+            lowestBid = int(bid["price"])
+            lowestBidDict = bid
+    return lowestBidDict
+
+#testing lowest_bid
+#print lowest_bid(0)
+
 def log_sale( postId, bidId ):
     f="database.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
