@@ -281,6 +281,14 @@ def buy():
     else:
         return redirect(url_for('loginOrRegister'))
 
+@app.route("/bidajax")
+def bidajax():
+    htmlstr = ""
+    allBids = dbmanager.get_bids()
+    for bid in bids:
+        htmlstr += "<p>$" + bid["price"] + " - " + bid["bidder"] + "</p>"
+    return htmlstr
+        
 #form for profile, show specific profile info
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
