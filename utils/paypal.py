@@ -5,12 +5,24 @@ import dbmanager
 import random
 import string
 
+def get_keys(string):
+        f = open("keys.txt","r")
+        lineNum = 0
+        for line in f:
+                if lineNum == 0 and string == "c_id":
+                        print "c_id",line[:-1]
+                        return line[:-1]
+                if lineNum == 1 and string == "c_sec":
+                        print "c_secret",line[:-1]
+                        return line[:-1]
+                lineNum+=1
+
 paypalrestsdk.configure({
 	"mode": "sandbox",
-	"client_id": "",
-	"client_secret": ""
+	"client_id": get_keys("c_id"),
+	"client_secret": get_keys("c_sec")
 })
-	
+
 def create_payment_for_buyer(item_id):
 	item = dbmanager.get_post(item_id)
         price = dbmanager.lowest_bid(item_id)["price"]
@@ -77,7 +89,7 @@ def create_payment_to_seller(email,item_id):
                         {
                                 "recipient_type": "EMAIL",
                                 "amount": {
-                                        "value": price,
+                                        "value": price*0.95, #account for fees
                                         "currency": "USD"
                                 },
                                 "receiver": email,
@@ -90,7 +102,7 @@ def create_payment_to_seller(email,item_id):
 	if payout.create():
                 print("payout[%s] created successfully" %(payout.batch_header.payout_batch_id))
 	else:
-		print payment.error
+		print payout.error
                 return "Error"
 
 sender_batch_id = ''.join(

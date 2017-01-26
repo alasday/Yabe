@@ -17,8 +17,6 @@ f.close()
 #the default page is allows you to choose to login or register
 @app.route("/")
 def loginOrRegister():
-    if "status" in session:
-        return redirect("/unpaid")
     if 'username' in session:
         return render_template("index.html",username = session['username'])
     else:
@@ -35,9 +33,9 @@ def unpaid():
 def paid():
     if paypal.execute_payment_for_buyer():
         postId = int(session["status"])
-        lowest_bid = lowest_bid(postId)
-        log_sale(postId,lowest_bid["id"])
-        email = accountManager.get_user(lowest_bid["bidder"])
+        lowest_bid = dbmanager.lowest_bid(postId)
+        dbmanager.log_sale(postId,lowest_bid["id"])
+        email = accountManager.get_user(lowest_bid["bidder"])["email"]
         print email
         payout_link = paypal.create_payment_to_seller(email,postId)
         session.pop("status")
@@ -59,17 +57,10 @@ def register():
 #login page if you already have an account
 @app.route("/login")
 def login():
+    print session
     if "status" in session:
         return redirect("/unpaid")
     return render_template("login.html")
-
-#payment page (you have to be logged in to pay for something)
-@app.route("/pay")
-def pay():
-    #item = dbmanager.get_item(item_id)
-    item = {"name":"test", "price":"5.00", "desc":"test_item"}
-    link = paypal.create_payment_for_buyer(0)
-    return render_template("pay.html",link = link, username=session["username"])
 
 #handles input of the login register page
 #authenticates/creates accounts
@@ -366,18 +357,6 @@ def logout():
         return redirect("/login")
     else:
         return redirect(url_for('loginOrRegister'))
-
-#test route for buying (noah)
-@app.route('/buytest', methods=["POST", "GET"])
-def buytest():
-    print paypal.create_payment_for_buyer(0)
-    return "check console"
-
-#execute the paypal payment
-@app.route('/buyexec', methods=["POST", "GET"])
-def buyexec():
-    print paypal.execute_payment_for_buyer()
-    return "check paypal"
 
 #run the app
 if __name__ == "__main__":
