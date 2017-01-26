@@ -1,5 +1,5 @@
--"Duration of Bidding Period" (/buy) --> "Duration of listing (days)"
--Upload Image (/buy) --> make not required
+
+
 
 -"Posted by: <username>" (/post) --> change to username of buyer, not username of person viewing the page (basically, session["username"] --> post_info_whatever_this_dict_is_called["username"]
 
