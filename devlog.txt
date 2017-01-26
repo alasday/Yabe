@@ -267,3 +267,8 @@ noahF -- 2017-01-26 01:20
 -Made a script for Asher to follow when making the video and a file with issues to be completed before the video
 -Created an email-er that emails the seller with the buyer's shipping info so the seller can ship to them
 -More various bug fixes
+
+chloeD -- 2017-01-26 01:48
+- running the code
+-testing the code
+- trying to find different bugs and fixing them
