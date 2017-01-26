@@ -28,13 +28,14 @@ def loginOrRegister():
 def unpaid():
     if not "status" in session:
         return redirect("/feed")
-    sale_link = create_payment_for_buyer(int(session["status"]))
+    sale_link = paypal.create_payment_for_buyer(int(session["status"]))
     return render_template("unpaid.html",sale_link = sale_link)
 
 @app.route("/paid")
 def paid():
-    if execute_payment_for_buyer():
-        return render_template("/feed")
+    if paypal.execute_payment_for_buyer():
+        session.pop("status")
+        return redirect("/feed")
     return render_template("unpaid.html")
     
 @app.route("/enditem/<int:postId>")
@@ -86,9 +87,15 @@ def authOrCreate():
         elif statusNum == 2:
             loginStatus = "wrong password"
         else:
-                session["username"] = username
-                session["status"] = statusNum
-                return redirect("/feed")
+            session["username"] = username
+            if statusNum == -1:
+                statusNum = 0
+            if statusNum == -2:
+                statusNum = 1
+            if statusNum == -3:
+                statusNum = 2
+            session["status"] = statusNum
+            return redirect("/feed")
 
                 #to be changed
         return render_template("loginOrReg.html",status=loginStatus)
@@ -154,7 +161,7 @@ def bid(postId=None):
 #creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
 def feed():
-    print session
+    dbmanager.update_posts()
     if "status" in session:
         return redirect("/unpaid")
     if request.method == "POST":

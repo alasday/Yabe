@@ -7,20 +7,27 @@ import sqlite3   #enable control of an sqlite database
 '''
 
 from hashlib import sha1
+import dbmanager
 
 def unpaidInvoice(user):
     f = "database.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute("SELECT * FROM bids WHERE bidder='%s'" %(user))
+    c.execute("SELECT * FROM posts WHERE owner='%s' and active='1'" %(user))
     l = c.fetchall()
     if l == None:
         return -1
     else:
+        postIds = []
         for row in l:
-            if row[6] == '1':
-                return row[1]
-    return -1
+            postIds.append(row[1])
+        for pid in postIds:
+            lowest_bid = dbmanager.lowest_bid(int(pid))
+            c.execute("SELECT * FROM sales WHERE postId='%s'"%(pid))
+            row = c.fetchone()
+            if row == None:
+                return pid
+    return -4
 
 #authenticate user returns true if authentication worked
 def authenticate(user,password):
@@ -45,8 +52,14 @@ def authenticate(user,password):
         isLogin = True
         messageNumber = 1
         loginStatusMessage = "login info correct"
-        if unpaidInvoice(user) != -1:
-            massageNumber = unpaidInvoice(user)
+        if unpaidInvoice(user) != -4:
+            messageNumber = unpaidInvoice(user)
+            if messageNumber == 0:
+                messageNumber = -1
+            if messageNumber == 1:
+                messageNumber = -2
+            if messageNumber == 2:
+                messageNumber = -3
     else:
         isLogin = False
         messageNumber = 2
