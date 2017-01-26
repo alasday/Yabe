@@ -67,7 +67,7 @@ def get_post( postId ):
     currentDate = time.time()
     periodSeconds = expires - currentDate
     secondsPerDay = 86400
-n    secondsPerHour = 3600
+    secondsPerHour = 3600
     
     if periodSeconds < 0:
         period = "This listing has expired"

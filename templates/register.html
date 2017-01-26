@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block navbar %}
-<li><a href = "/login"> Login </a></li>
+{{ super() }}
 {% endblock %}
 
 {% block body %}
@@ -23,7 +23,7 @@ $(document).ready(function(){
 });
 </script>
 
-<h1>Register for an account</h1><br>
+<h4>Register</h4><br>
 <form action="/authOrCreate" method="POST">
     <div class="row">
         <div class="col-md-6 tooltip-wide">
@@ -42,5 +42,5 @@ $(document).ready(function(){
     </div>
     
     <br>
-<input class="btn btn-primary" type="submit" value="register" name="logOrReg">
+<input class="btn btn-primary" type="submit" value="Register" name="logOrReg">
 {% endblock %}
