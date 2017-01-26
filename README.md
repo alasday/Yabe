@@ -30,8 +30,7 @@ Once you clone the repo, from the root of the project run
 to initilize the app. This must only be done once. Next, contact the team at Yabe for your PayPal API keys. We will send you a file, keys.txt, which you should place in the root directory of your the project.
 
 ## Demo Video
-Here's a cool video displaying the core features of Yabe:
+[Here's a cool video](https://www.youtube.com/watch?v=fFwRk06vP9Y) displaying the core features of Yabe!
 
-https://www.youtube.com/watch?v=fFwRk06vP9Y
 
 Enjoy!
