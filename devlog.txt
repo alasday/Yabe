@@ -144,6 +144,9 @@ asherL -- 2017-01-13 13:14
        -tried to figure out how to get paypal api working on the school's machines
        -after reading the docs and doing a bit of research, found that the machines needed to have a formatting comand run, told Mr. Brown
 
+sebastianC -- 2017-01-13 13:17
+	- added new templates
+
 ============== Tuesday, January 17th ===============
 
 noahF -- 2017-01-17 13:20
@@ -157,6 +160,8 @@ chloeD  -- 2017-01-17 23:29
 	- found a cool way to implement AJAX into the feed
 	- worked on post and feed (it works in theory... I want to meet with sebastian and make sure we're on the same page about how it works (aka I want to verify a form thing, which he was working on in class today -- he'll push tomorrow and we'll merge our work)
 
+sebastianC -- 2017-01-17 14:05
+	- expanded functionality of creation template
 ============== Wednesday, January 18th ===============
 
 chloeD -- 2017-01-18 09:55
@@ -180,7 +185,7 @@ noahF -- 2017-01-18 13:20
 	-finished jQuery showing/hiding, need to make it actually update info
 
 jackS -- 2017-01-18 21:58
-- made new_post return postId because chloe asked me to
+      - made new_post return postId because chloe asked me to
 
 chloeD -- 2017-01-18 23:42
 	- laughed at jack's most recent devlog entry
@@ -195,6 +200,10 @@ asherL -- 2017-01-18 18:43
        -realized I was incompetent and forgot to ask Mr. Brown to format the machines via email so paypal still didnt work
        -asked Mr. Brown to reformat the machines
        -installed paypal on my machine because Mr. Brown reformatted it	
+
+sebastianC 2017-01-18 20:27
+	- worked on post page
+
 ============== Thursday, January 19th ===============
 noahF -- 2017-01-19 13:20
 	-Made a quick individual post page
@@ -209,6 +218,9 @@ chloeD -- 2017-01-19 19:30
 jackS -- 2017-01-19 23:59
 - wrote get_posts
 - wrote get_posts_by_username
+
+sebastianC -- 2017-01-19 22:54
+	- worked on bids incorporation into post page
 
 ============== Friday, January 20th ===============
 
@@ -229,14 +241,16 @@ chloeD -- 2017-01-23 14:05
 	- almost cried
 
 jackS -- 2017-01-23 14:07
-- fixed bugs in dbmanager
+      	- fixed bugs in dbmanager
 
 asherL -- 2017-01-23 14:04
--worked with sebastian on front end, fixed and then forgot to push an image thing
+       -worked with sebastian on front end, fixed and then forgot to push an image thing
 
 noahF -- 2017-01-23 13:20
--Made bidding page, added routes for bidding
+      -Made bidding page, added routes for bidding
 
+sebastianC 2017-01-23 14:03
+	-beautified feed page   
 ============== Wednesday, January 25th ===============
 jackS -- 2017-01-25 14:10
 - wrote function log_sale, to ... log sales, and change the active column in posts table to bought
@@ -249,6 +263,9 @@ noahF -- 2017-01-25 20:00
 -Began payment stuff
 -Fixed weird indentations
 -Completed payments
+
+sebastinanC - 2017-01-25 23:47
+	 -changed bootstrap to v4 alpha
 
 ============== Thursday, January 26th ===============
 jackS -- 2017-01-26 1:10
@@ -272,3 +289,7 @@ chloeD -- 2017-01-26 01:48
 - running the code
 -testing the code
 - trying to find different bugs and fixing them
+
+sebastianC - 2017-01-26 04:21
+	-changed card to feed layout
+	-implemented images and descriptions throughout stack

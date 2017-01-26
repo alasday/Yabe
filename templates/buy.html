@@ -12,24 +12,14 @@
 {% block body %}
 <center>
 <h3>Create New Product Request</h3>
-<small> Accepted image format: png, jpg, jpeg, PNG, JPG, JPEG </small>
 </center>
 <br><br>
-      <form method='POST' action="/create" enctype="multipart/form-data">
-	<div class="form-group">
-	  <div class="col-md-2"></div>
-	  <div class="col-md-4">
-	    Link Image:<br> <input type="text" name="imageLink" class="form-control"><br><br>
-	    Product Name:<br> <input type="text" name="title" class="form-control" required><br><br>
-	    Product Description:<br> <textarea type="text" name="description" class="form-control" lines="4"></textarea>
-	  </div>
-	  <div class="col-md-4">
-	    Starting Price:<br> <input type="number" name="startingPrice" class="form-control"><br><br>
-	    Duration of Bidding Period (days):<br> <input type="number" name="period" class="form-control"><br><br>
-	    <center><input type="submit" value="Submit"></center>
-	  </div>
-	  <div class="col-md-2"></div>
-	  </div>
-	</div>
-      </form>
+<form method='POST' action="/create" enctype="multipart/form-data">
+  Link Image:<br> <input type="text" name="imageLink" class="form-control"><br><br>
+  Product Name:<br> <input type="text" name="title" class="form-control" required><br><br>
+  Product Description:<br> <textarea type="text" name="description" class="form-control" lines="4"></textarea><br><br>
+  Starting Price:<br> <input type="number" name="startingPrice" class="form-control"><br><br>
+  Duration of Bidding Period (days):<br> <input type="number" name="period" class="form-control"><br><br>
+  <center><input type="submit" value="Submit"></center>
+</form>
 {% endblock %}
