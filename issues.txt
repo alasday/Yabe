@@ -8,4 +8,4 @@
 
 -"PAY" (/unpaid) --> spice up the whole /unpaid page, say something like: "Your listing found a seller! Pay now. <Nice button that links to {{sale_link}}>"
 
--MAKE SURE ALL ROUTES (unpaid.html off the top of my head) HAVE PROPER NAVBAR
+
