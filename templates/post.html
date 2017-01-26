@@ -5,7 +5,7 @@
 <title>Post</title>
 <style>
 .tooltip-wide .tooltip{
-    min-width:400px;
+min-width:400px;
 }
 </style>
 {% endblock %}
@@ -23,29 +23,34 @@ $(document).ready(function(){
 });
 </script>
 
-<h1>{{title}}</h1>
+<h1>{{post['title']}}</h1>
 <div class="row">
-	<div class="col-md-6">
-		<hr>
-		<p>By: <a href="/user/{{username}}">{{username}}</a></p>
-		<br>
-	</div>
+  <div class="col-md-6">
+    <small>Posted by: <a href="/user/{{username}}">{{username}}</a></small>
+    <br>
+  </div>
 </div>
 <div class="row">
-	<div class="col-md-6">
-		<hr>
-		<p>Starting bid: {{startingPrice}}</p>
-		<br>
-		<p>Current bid: {% if lowestBidId != -1 %} {{lowestBidInfo["price"]}} by <a href="/user/{{lowestBidInfo["bidder"]}}">{{lowestBidInfo["bidder"]}}</a> {% else %} No bids yet. {% endif %}</p>
-		<a href="/bid/{{postId}}" class="btn">Bid</a>
-	</div>
+  <div class="col-md-6">
+    <hr>
+    <p>Starting bid: {{post['startingPrice']}}</p>
+    <br>
+    <p>Current bid: {% if lowestBidId != -1 %} {{lowestBidInfo["price"]}} by <a href="/user/{{lowestBidInfo['bidder']}}">{{lowestBidInfo["bidder"]}}</a> {% else %} No bids yet. {% endif %}</p>
+    {% if post['active'] == 0 %}
+    <a href="/bid/{{post['postId']}}" class="btn btn-primary">Make a Bid</a>
+    {% elif post['active'] == 1 %}
+    <a href="#" class="btn btn-success">SOLD</a>
+    {% else %}
+    <a href="#" class="btn btn-danger">ENDED</a>
+    {% endif %}
+  </div>
 </div>
 <div class="row">
-	<div class="col-md-6">
-		<hr>
-		<p>Time left: {{period}}</p>
-		<br>
-	</div>
+  <div class="col-md-6">
+    <hr>
+    <p>Time left: {{post['period']}}</p>
+    <br>
+  </div>
 </div>
 <br>
 

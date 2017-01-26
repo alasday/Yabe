@@ -12,14 +12,24 @@
 
 {% block body %}
 
-<div class="row">
-{% for post in posts %}
-	<div class="col-md-3">
-		<h5>{{post["title"]}}</h5>
-		<a href="/user/{{post['owner']}}">{{post["owner"]}}</a>:
-		<br><p>Max price: ${{post['startingPrice']}}</p>
-		<br><p>Time left: {{post['period']}}</p>
-	</div>
+
+<div class="card-columns">
+  {% for post in posts %}
+  <div class="card" style="width: 20rem;">
+    <div class="card-block">
+      <h5 class="card-title"><a class="card-link" href="/post/{{post['postId'] }}">{{post["title"]}}</a></h5>
+      <p>Posted by: <a class="card-link" href="/user/{{post['owner']}}">{{post["owner"]}}</a></p>
+      <p>Max price: ${{post['startingPrice']}}</p>
+      <p>Time left: {{post['period']}}</p>
+      {% if post['active'] == 0 %}
+      <a href="/bid/{{post['postId']}}" class="btn btn-primary">Make a Bid</a>
+      {% elif post['active'] == 1 %}
+      <a href="#" class="btn btn-success">SOLD</a>
+      {% else %}
+      <a href="#" class="btn btn-danger">ENDED</a>
+      {% endif %}
+    </div>
+  </div>
 {% endfor %}
 </div>
 

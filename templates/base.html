@@ -4,34 +4,32 @@
     <meta charset="utf-8">
         {% block head %}
         <title>Yabe</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <!--<link rel="stylesheet" href="../static/css/app.css">-->
         {% endblock %}
     </head>
 
-    <nav class="navbar navbar-full navbar-light bg-faded">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">yAbe</a>
-            </div>
-            <div id="main-navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-		  <!-- Make this a block instead of using if statement-->   
-		  {% block navbar %}
-		  {% if username %}
-		  
-		  <li><a href = "/feed">Sell</a></li>
-		  <li><a href = "/buy">Buy</a></li>
-		  <li><a href="/profile">Profile</a></li>
-		  <li><a href="/logout">Logout</a></li>
-		  {% else %}
-		  <li><a href="/register">Register</a></li>
-		  <li><a href="/login">Login</a></li>
-		  {% endif %}
-		  {% endblock %}
-                </ul>
-            </div>
-        </div>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-inverse bg-inverse">
+      <div class="container">
+        <a class="navbar-brand" href="/feed">Yabe</a>
+	<div id="navbarNav" class="navbar-collapse collapse">
+          <ul class="navbar-nav">
+	    <!-- Make this a block instead of using if statement-->   
+	    {% block navbar %}
+	    {% if username %}
+	    
+	    <li class="nav-item"><a class="nav-link" href="/feed">Feed</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	    {% else %}
+	    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+	    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+	  {% endif %}
+	    {% endblock %}
+          </ul>
+	</div>
+      </div>
     </nav>
 
     <body>
@@ -46,6 +44,7 @@
                 </div>
             </div>
             {% endif %}
+	    <br><br>
             {% block body %}
 	    
             {% endblock %}
