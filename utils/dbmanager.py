@@ -1,5 +1,16 @@
 import sqlite3, time
 
+def update_posts():
+    f="database.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()  #facilitate db ops
+
+    c.execute("SELECT * FROM posts")
+    l = c.fetchall()
+
+    for row in l:
+        if time.time() > float(row[5]):
+            end_post(int(row[1]))
 
 # new_post() -- method for creating a new post
 # @returns postId

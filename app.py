@@ -17,6 +17,8 @@ f.close()
 #the default page is allows you to choose to login or register
 @app.route("/")
 def loginOrRegister():
+        if "status" in session:
+                redirect("/feed")
 	if 'username' in session:
 	    return render_template("index.html",username = session['username'])
 	else:
@@ -25,11 +27,15 @@ def loginOrRegister():
 #register page if you don't already have an account
 @app.route("/register")
 def register():
+        if "status" in session:
+                redirect("/feed")
 	return render_template("register.html")
 
 #login page if you already have an account
 @app.route("/login")
 def login():
+        if "status" in session:
+                redirect("/feed")
 	return render_template("login.html")
 
 #payment page (you have to be logged in to pay for something)
@@ -44,6 +50,8 @@ def pay():
 #authenticates/creates accounts
 @app.route("/authOrCreate", methods=["POST"])
 def authOrCreate():
+        if "status" in session:
+                redirect("/feed")
     formDict = request.form
     if formDict["logOrReg"] == "login":
         username = formDict["username"]
@@ -86,6 +94,8 @@ def authOrCreate():
 #creates a buy request post
 @app.route("/create", methods=["POST"])
 def create():
+        if "status" in session:
+                redirect("/feed")
         #get field stuff
         pId = dbmanager.new_post(session['username'], request.form["title"], int(request.form["startingPrice"]),int(request.form["period"]))
         #return redirect('/post/<int: postId>')
@@ -95,6 +105,8 @@ def create():
 @app.route('/post/<int:postId>',methods=["POST","GET"])
 #@app.route("/post/<int: postId>/<int:Period>")
 def post(postId=None):
+        if "status" in session:
+                redirect("/feed")
 	if "Submit" in request.form:
 		dbmanager.new_bid(session['username'],postId,int(request.form.get("amt")))
 	bids = dbmanager.get_bids(postId)
@@ -143,7 +155,9 @@ def feed():
 #@app.route("/feed")
 #@app.route("/feed/<string: username>/", methods=["GET", "POST"])
 @app.route("/user/<username>/")
-def userposts(username=None):
+def userposts(username):
+        if "status" in session:
+                redirect("/feed")
     #view all posts by username
     posts = []
     return render_template("user.html",username=username,posts=dbmanager.get_posts_by_username(username))
@@ -233,6 +247,8 @@ def userposts(username=None):
 #form for item info
 @app.route("/buy")
 def buy():
+        if "status" in session:
+                redirect("/feed")
 	if 'username' in session:
 		return render_template("buy.html", username=session["username"])
 	else:
@@ -241,6 +257,8 @@ def buy():
 #form for profile, show specific profile info
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
+        if "status" in session:
+                redirect("/feed")
 	if request.form and not accountManager.full_user_info(session['username']):
 		accountManager.set_user_info(session['username'], request.form.get("email"), request.form.get("addr1"), request.form.get("addr2"), request.form.get("city"), request.form.get("state"), request.form.get("zip"), request.form.get("fname"), request.form.get("lname"), request.form.get("phone"))
 	if 'username' in session:
@@ -251,6 +269,8 @@ def profile():
 #when updating user info
 @app.route("/profileupdate", methods=["POST"])
 def profileupdate():
+        if "status" in session:
+                redirect("/feed")
 	if 'username' in session and request.form:
 		user_info = accountManager.get_user(session['username'])
 		if request.form.get("inputChangeNameF") == '':
@@ -303,6 +323,8 @@ def profileupdate():
 #logout of user
 @app.route('/logout', methods=["POST", "GET"])
 def logout():
+        if "status" in session:
+                redirect("/feed")
     if "username" in session:
         session.pop('username')
         render_template("loginOrReg.html",status="logged out")
