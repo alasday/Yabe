@@ -53,7 +53,7 @@ def authOrCreate():
     if "status" in session:
         redirect("/feed")
     formDict = request.form
-    if formDict["logOrReg"] == "login":
+    if formDict["logOrReg"] == "Login":
         username = formDict["username"]
         password = formDict["password"]
         loginStatus = "login failed"
@@ -74,7 +74,7 @@ def authOrCreate():
                 #to be changed
         return render_template("loginOrReg.html",status=loginStatus)
 
-    elif formDict["logOrReg"] == "register":  #registering
+    elif formDict["logOrReg"] == "Register":  #registering
         username = formDict["username"]
         password = formDict["password"]
         pwd = formDict["passconfirm"]  #confirm password
