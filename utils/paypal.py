@@ -1,7 +1,7 @@
 import paypalrestsdk
 from flask import request
 import urlparse
-#import utils
+import dbmanager
 
 paypalrestsdk.configure({
 	"mode": "sandbox",
@@ -10,8 +10,8 @@ paypalrestsdk.configure({
 })
 	
 def create_payment_for_buyer(item_id):
-	#item = utils.dbmanager.get_item(item_id)
-	item = {"name":"test", "price":"5.00", "desc":"test_item"}
+	item = dbmanager.get_post(item_id)
+        price = dbmanager.lowest_bid(item_id)
 	
 	payment = paypalrestsdk.Payment({
 		"intent":"sale",
@@ -19,23 +19,23 @@ def create_payment_for_buyer(item_id):
 			"payment_method":"paypal"
 		},
 		"redirect_urls": {
-			"return_url":"http://127.0.0.1:5000/buyexec",
-			"cancel_url":"http://127.0.0.1:5000/buytest"
+			"return_url":"http://127.0.0.1:5000/paid",
+			"cancel_url":"http://127.0.0.1:5000/unpaid"
 		},
 		"transactions": [{
 			"item_list": {
 				"items": [{
-					"name": item["name"],
-					"price": item["price"],
+					"name": item["title"],
+					"price": price,
 					"currency": "USD",
 					"quantity": 1
 				}]
 			},
 			"amount": {
-				"total": item["price"],
+				"total": price,
 				"currency": "USD"
 			},
-			"description": item["desc"]
+			"description": ""
 		}]
 	})
 	
@@ -44,7 +44,7 @@ def create_payment_for_buyer(item_id):
 		for link in payment.links:
 			if link.method == "REDIRECT":
 				redirect_url = str(link.href)
-				return "Redirect for approval: %s" % (redirect_url)
+				return redirect_url
 	else:
 		return "Error while creating payment:"+payment.error
 
@@ -56,9 +56,10 @@ def execute_payment_for_buyer():
 	payer_id = query_parsed["PayerID"]
 	payment = paypalrestsdk.Payment.find(payment_id[0])
 	if payment.execute({"payer_id": payer_id[0]}):
-		return "Payment execute successfully"
+		return True
 	else:
-		return payment.error 
+                print payment.error
+		return False 
 	
 #EXAMPLE/TEST
 #create_payment_for_buyer(0)

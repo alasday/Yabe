@@ -18,24 +18,42 @@ f.close()
 @app.route("/")
 def loginOrRegister():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     if 'username' in session:
         return render_template("index.html",username = session['username'])
     else:
         return render_template("index.html")
 
+@app.route("/unpaid")
+def unpaid():
+    if not "status" in session:
+        return redirect("/feed")
+    sale_link = create_payment_for_buyer(int(session["status"]))
+    return render_template("unpaid.html",sale_link = sale_link)
+
+@app.route("/paid")
+def paid():
+    if execute_payment_for_buyer():
+        return render_template("/feed")
+    return render_template("unpaid.html")
+    
+@app.route("/enditem/<int:postId>")
+def enditem(postId=None):
+    dbmanager.end_post(postId)
+    return redirect("/unpaid")
+    
 #register page if you don't already have an account
 @app.route("/register")
 def register():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     return render_template("register.html")
 
 #login page if you already have an account
 @app.route("/login")
 def login():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     return render_template("login.html")
 
 #payment page (you have to be logged in to pay for something)
@@ -51,13 +69,14 @@ def pay():
 @app.route("/authOrCreate", methods=["POST"])
 def authOrCreate():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     formDict = request.form
     if formDict["logOrReg"] == "Login":
         username = formDict["username"]
         password = formDict["password"]
         loginStatus = "login failed"
         statusNum = accountManager.authenticate(username,password) #returns 0,1 or 2 for login status messate
+        print statusNum
         if statusNum == 0:
             loginStatus = "user does not exist"
         elif statusNum == 1:
@@ -95,7 +114,7 @@ def authOrCreate():
 @app.route("/create", methods=["POST"])
 def create():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
         #get field stuff
     pId = dbmanager.new_post(session['username'], request.form["title"], int(request.form["startingPrice"]),int(request.form["period"]))
     #return redirect('/post/<int: postId>')
@@ -103,10 +122,9 @@ def create():
 
 #actually posts the buy request post
 @app.route('/post/<int:postId>',methods=["POST","GET"])
-#@app.route("/post/<int: postId>/<int:Period>")
 def post(postId=None):
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     if "Submit" in request.form:
         dbmanager.new_bid(session['username'],postId,int(request.form.get("amt")))
     bids = dbmanager.get_bids(postId)
@@ -121,6 +139,8 @@ def post(postId=None):
     
 @app.route("/bid/<int:postId>", methods=["POST","GET"])
 def bid(postId=None):
+    if "status" in session:
+        return redirect("/unpaid")
     bids = dbmanager.get_bids(postId)
     startingPrice = dbmanager.get_post(postId)['startingPrice']
     lowestBid = startingPrice
@@ -129,11 +149,14 @@ def bid(postId=None):
         if int(i["price"]) < lowestBid:
             lowestBid = int(i["price"])
             lowestBidId = i["id"]
-    return render_template("bid.html", postId = postId, username = session['username'], startingPrice = startingPrice, lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
+    return render_template("bid.html", postId = postId, username = dbmanager.get_post(postId)["owner"], startingPrice = startingPrice, lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
 
 #creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
 def feed():
+    print session
+    if "status" in session:
+        return redirect("/unpaid")
     if request.method == "POST":
         # Add contribution to the database
         post_id = request.form["post_id"]
@@ -157,7 +180,7 @@ def feed():
 @app.route("/user/<username>/")
 def userposts(username):
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     #view all posts by username
     posts = []
     return render_template("user.html",username=username,posts=dbmanager.get_posts_by_username(username))
@@ -248,7 +271,7 @@ def userposts(username):
 @app.route("/buy")
 def buy():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     if 'username' in session:
         return render_template("buy.html", username=session["username"])
     else:
@@ -258,7 +281,7 @@ def buy():
 @app.route("/profile", methods=["POST", "GET"])
 def profile():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     if request.form and not accountManager.full_user_info(session['username']):
         accountManager.set_user_info(session['username'], request.form.get("email"), request.form.get("addr1"), request.form.get("addr2"), request.form.get("city"), request.form.get("state"), request.form.get("zip"), request.form.get("fname"), request.form.get("lname"), request.form.get("phone"))
     if 'username' in session:
@@ -270,7 +293,7 @@ def profile():
 @app.route("/profileupdate", methods=["POST"])
 def profileupdate():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     if 'username' in session and request.form:
         user_info = accountManager.get_user(session['username'])
         if request.form.get("inputChangeNameF") == '':
@@ -324,10 +347,9 @@ def profileupdate():
 @app.route('/logout', methods=["POST", "GET"])
 def logout():
     if "status" in session:
-        redirect("/feed")
+        return redirect("/unpaid")
     if "username" in session:
         session.pop('username')
-        render_template("loginOrReg.html",status="logged out")
         return redirect("/login")
     else:
         return redirect(url_for('loginOrRegister'))
