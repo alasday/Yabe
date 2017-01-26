@@ -89,7 +89,7 @@ def authOrCreate():
             return redirect("/login") #WE NEED TOPUT AT THE TOP OF THE LOGIN PAGE: 'Username successfully registered, please log in'
         return render_template("loginOrReg.html",status=registerStatus) #status is the login/creation messate 
     else:
-        return redirect(url_for("loginOrReg"))
+        return redirect(url_for("loginOrRegister"))
     
 #creates a buy request post
 @app.route("/create", methods=["POST"])
