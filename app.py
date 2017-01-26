@@ -55,7 +55,7 @@ def authOrCreate():
         elif statusNum == 1:
             session["username"]=username
             loginStatus = username + " logged in"
-            return redirect( "/profile" )
+            return redirect( "/feed" )
         elif statusNum == 2:
             loginStatus = "wrong password"
 
