@@ -14,7 +14,6 @@
 
 <h3><u>All bids</u></h3>
 <div id="updatingElement">
-{% allBids = dbmanager.get_bids(postId) %}
 {% for bid in allBids %}
 	${{bid["price"]}} - {{bid["bidder"]}}
 {% endfor %}
@@ -22,7 +21,7 @@
 <form action="/post/{{postId}}" method="POST">
 	<div class="row">
 		<div class="col-md-3">
-			<input id="updatingElement" type="number" name="amt" placeholder="100" min=1 max={{lowestBidInfo["price"]}}></input>
+			<input id="updatingElement" type="number" name="amt" placeholder="100" min=1 max={{lowestBid}}></input>
 		</div>
 		<div class="col-md-3">
 			<input type="submit" name="Submit"></input>

@@ -167,7 +167,7 @@ def bid(postId=None):
         if int(i["price"]) < lowestBid:
             lowestBid = int(i["price"])
             lowestBidId = i["id"]
-    return render_template("bid.html", postId = postId, username = dbmanager.get_post(postId)["owner"], startingPrice = startingPrice, lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
+    return render_template("bid.html", postId = postId, username = dbmanager.get_post(postId)["owner"], startingPrice = startingPrice, lowestBid = lowestBid, lowestBidId = lowestBidId, lowestBidInfo = dbmanager.get_bid(lowestBidId), allBids = bids)
 
 #creates the feed of buy request posts
 @app.route("/feed", methods=["GET", "POST"])
