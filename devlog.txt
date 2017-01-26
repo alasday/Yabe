@@ -228,3 +228,10 @@ jackS -- 2017-01-23 14:07
 jackS -- 2017-01-25 14:10
 - wrote function log_sale, to ... log sales, and change the active column in posts table to bought
 - added the column active to posts to indicate whether a listing is still active or not
+
+jackS -- 2017-01-25 18:05
+- wrote funciton lowest_bid to return the lowest bid on a post
+
+============== Thursday, January 26th ===============
+jackS -- 2017-01-26 1:10
+- wrote the readme
